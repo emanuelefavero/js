@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      #container {
+        background-color: rgb(30, 75, 69);
+        color: rgb(90, 196, 177);
+        width: 250px;
+        height: 250px;
+        overflow: auto; /* <-- set overflow auto to get scroll bars */
+      }
+
+      /* NOTE: set the content with higher height than its container to get the scroll bars behavior */
+      #content {
+        height: 1000px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- CONTAINER WITH SCROLL BARS -->
+    <div id="container">
+      <div id="content">Scroll Me ↓↓</div>
+    </div>
+
+    <button id="scrollToTopButton">Scroll to top of the container</button>
+    <button id="scrollToBottomButton">Scroll to bottom of the container</button>
+    <h2 id="showScrollValue"></h2>
+
+    <script>
+      const container = document.querySelector('#container')
+      const showScrollValue = document.querySelector('#showScrollValue')
+      const scrollToTopButton = document.querySelector('#scrollToTopButton')
+      const scrollToBottomButton = document.querySelector(
+        '#scrollToBottomButton'
+      )
+
+      container.onscroll = () => {
+        showScrollValue.innerHTML =
+          'Scrolled from top: ' + container.scrollTop + 'px'
+      }
+
+      scrollToTopButton.onclick = () => {
+        container.scrollTop = 0
+      }
+
+      scrollToBottomButton.onclick = () => {
+        container.scrollTop = container.scrollHeight
+      }
+    </script>
+  </body>
+</html>
