@@ -1,14 +1,14 @@
 function firstFunction() {
-    secondFunction()
+  secondFunction()
 }
 
 function secondFunction() {
-    thirdFunction()
+  thirdFunction()
 }
 
 function thirdFunction() {
-    // console.trace() method displays a trace that show how the code ended up at a certain point.
-    console.trace()
+  // console.trace() method displays a trace that show how the code ended up at a certain point.
+  console.trace()
 }
 
 firstFunction()
