@@ -1,7 +1,7 @@
+// SPLICE - replace or remove elements in array
 let fruits = ['banana', 'cherry', 'kiwi', 'orange']
 console.log('original', fruits)
 
-// SPLICE - replace or remove elements in array
 // removes item, returns that item [ 'banana' ]
 console.log('splice(0, 1)', fruits.splice(0, 1))
 
