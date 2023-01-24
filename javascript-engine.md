@@ -89,4 +89,4 @@ The JavaScript engine is the part of the browser that is responsible for interpr
 
 &nbsp;
 
-[**Go To Top &nbsp; ⬆️**](#javascript-engine)
+[**Go To Top &nbsp; ⬆️**](#javascript-engine) &nbsp; [**Go Home &nbsp; 🏠**](README.md)

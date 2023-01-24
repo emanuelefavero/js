@@ -46,3 +46,11 @@ To create a BigInt, you can add an `n` at the end of the number or use the `BigI
 
 - `1234567890123456789012345678901234567890n`
 - `BigInt(1234567890123456789012345678901234567890)`
+
+&nbsp;
+
+---
+
+&nbsp;
+
+[**Go To Top &nbsp; ⬆️**](#javascript-primitive-data-types) &nbsp; [**Go Home &nbsp; 🏠**](README.md)
