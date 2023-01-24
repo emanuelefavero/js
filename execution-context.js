@@ -3,7 +3,7 @@
 // ? 1. Creation phase - where variables are declared and assigned a default value of undefined, functions are created and assigned to memory, and this is set to the global object.
 // ? 2. Execution phase - where the code is executed line by line.
 
-// TODO: Run the debugger from the following line and step through the code to see the execution context in action.
+// TODO: Run the debugger from the following line and step into the code to see the execution context in action.
 let x = 2
 let y = 3
 
