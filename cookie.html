@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 id="output">Hi</h1>
+    <input name="name" type="text" placeholder="Your name..." />
+    <button>Submit</button>
+    <p>Refresh the page to see cookies in action</p>
+    <button onclick="window.location.reload()">Refresh</button>
+    <button id="deleteButton">Delete Cookie</button>
+
+    <script>
+      const button = document.querySelector('button')
+      const input = document.querySelector('input')
+      const output = document.querySelector('#output')
+      const deleteButton = document.querySelector('#deleteButton')
+
+      // Set cookie
+      button.addEventListener('click', () => {
+        // set cookie
+        document.cookie = `name=${input.value}`
+
+        // set cookie with expiration date (in this case 1 day)
+        // document.cookie = `name=${input.value}; expires=${new Date(
+        //   Date.now() + 86400000
+        // )}`
+
+        // set cookie with expiration date and path (path is the path of the website that the cookie is valid for)
+        // document.cookie = `name=${input.value}; expires=${new Date(
+        //   Date.now() + 86400000
+        // )}; path=/`
+
+        // output.innerHTML = `Hi ${input.value}`
+        document.location.reload()
+      })
+
+      // Get cookie
+      const cookie = document.cookie
+        .split('; ')
+        .find((row) => row.startsWith('name'))
+        .split('=')[1]
+
+      // Set output text to cookie
+      output.innerHTML = `Hi ${cookie}`
+
+      // Delete cookie
+      deleteButton.addEventListener('click', () => {
+        document.cookie = `name=; expires=${new Date(0)}`
+        document.location.reload()
+      })
+    </script>
+  </body>
+</html>
