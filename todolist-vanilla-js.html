@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <style>
+      *,
+      *:before,
+      *:after {
+        box-sizing: border-box;
+      }
+
+      .container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 20px;
+      }
+
+      #newtask {
+        display: flex;
+        flex-direction: column;
+      }
+
+      #push {
+        margin-top: 10px;
+      }
+
+      ul {
+        list-style-type: none;
+      }
+
+      li {
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div id="newtask">
+        <input type="text" placeholder="Add Tasks" />
+        <button id="push">Add Task</button>
+      </div>
+
+      <div id="tasks">
+        <ul></ul>
+      </div>
+    </div>
+
+    <script>
+      document.querySelector('#push').onclick = function () {
+        const input = document.querySelector('#newtask input')
+        const tasks = document.querySelector('#tasks ul')
+
+        if (input.value.length == 0) {
+          alert('Kindly Enter Task Name!!!!')
+        } else {
+          tasks.innerHTML += `<li>${input.value} 
+            <button class="delete">Delete</button></li>`
+
+          let current_tasks = document.querySelectorAll('#tasks ul li')
+
+          for (let i = 0; i < current_tasks.length; i++) {
+            current_tasks[i].querySelector('button').onclick = function () {
+              this.parentNode.remove()
+            }
+          }
+
+          input.value = ''
+        }
+      }
+    </script>
+  </body>
+</html>
