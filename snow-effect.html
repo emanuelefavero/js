@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: #0b2d6a;
+        color: #fff;
+
+        /* ----------- */
+        overflow: hidden;
+      }
+
+      /* SNOW EFFECT */
+      .flake {
+        position: absolute;
+        top: 0;
+        font-size: 7px;
+        color: #ffffff;
+        text-shadow: 0 0 20px #ffffff;
+        user-select: none;
+        pointer-events: none;
+      }
+      /* ----------- */
+
+      main {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+      }
+
+      h1 {
+        font-size: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>🥶</h1>
+    </main>
+    <script>
+      // SNOW EFFECT
+      // create an array to store the snowflakes
+      let flakes = []
+
+      // create a function to generate a new snowflake
+      function createSnowflake() {
+        // create a new DOM element for the snowflake
+        let flake = document.createElement('div')
+        flake.className = 'flake'
+        flake.innerHTML = '❄'
+        document.body.appendChild(flake)
+
+        // set the snowflake's initial position and velocity
+        flake.x = Math.random() * window.innerWidth
+        flake.y = -50
+        flake.speed = Math.random() * 5 + 1
+        flake.velX = Math.random() * 3 - 1.5
+        flake.velY = flake.speed
+
+        // add the snowflake to the array
+        flakes.push(flake)
+      }
+
+      // create a function to update the snowflakes
+      function updateSnowflakes() {
+        for (let i = 0; i < flakes.length; i++) {
+          let flake = flakes[i]
+
+          // update the snowflake's position
+          flake.x += flake.velX
+          flake.y += flake.velY
+
+          // if the snowflake goes off the screen, wrap it around to the other side
+          if (flake.x < -50) {
+            flake.x = window.innerWidth + 50
+          }
+          if (flake.x > window.innerWidth + 50) {
+            flake.x = -50
+          }
+          if (flake.y > window.innerHeight + 50) {
+            flake.y = -50
+          }
+
+          // set the snowflake's new position
+          flake.style.transform = `translate(${flake.x}px, ${flake.y}px)`
+        }
+      }
+
+      // create a function to reset the snow effect
+      function resetSnowEffect() {
+        // remove all the existing snowflakes
+        for (let i = 0; i < flakes.length; i++) {
+          let flake = flakes[i]
+          document.body.removeChild(flake)
+        }
+        flakes = []
+
+        // create new snowflakes based on the new window dimensions
+        for (let i = 0; i < 50; i++) {
+          createSnowflake()
+        }
+      }
+
+      // create 40 snowflakes to start with
+      for (let i = 0; i < 40; i++) {
+        createSnowflake()
+      }
+
+      // call the update function every 30 milliseconds
+      setInterval(updateSnowflakes, 30)
+
+      // add an event listener for the window resize event
+      window.addEventListener('resize', function () {
+        resetSnowEffect()
+      })
+    </script>
+  </body>
+</html>
