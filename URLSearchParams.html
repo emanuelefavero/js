@@ -8,6 +8,8 @@
   <body>
     Hello
     <script>
+      // URLSearchParams
+      // @see https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
       // NOTE: ADD THIS TO THE URL ?name=john&age=30
       const params = new URLSearchParams(window.location.search)
       console.log(params.get('name')) // John
