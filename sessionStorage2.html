@@ -12,6 +12,8 @@
       <h1 class="output"></h1>
     </form>
     <script>
+      // `````````````````
+      // * SESSION STORAGE
       const input = document.querySelector('input[type="text"]')
       const form = document.querySelector('form')
       const output = document.querySelector('.output')
@@ -26,6 +28,7 @@
       window.onload = () => {
         output.textContent = sessionStorage.getItem('name')
       }
+      // `````````````````
     </script>
   </body>
 </html>
