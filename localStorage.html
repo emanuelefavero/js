@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" name="name" placeholder="Your name..." />
+    <input type="submit" />
+    <h1 class="output"></h1>
+
+    <button id="removeData">Remove localStorage name Data</button>
+
+    <script>
+      // LOCAL STORAGE
+      const input = document.querySelector('input[type="text"]')
+      const submitButton = document.querySelector('input[type="submit"]')
+      const output = document.querySelector('.output')
+      const removeDataButton = document.querySelector('#removeData')
+
+      submitButton.addEventListener('click', (e) => {
+        e.preventDefault()
+
+        localStorage.setItem('name', input.value)
+        output.textContent = localStorage.getItem('name')
+      })
+
+      window.onload = () => {
+        output.textContent = localStorage.getItem('name')
+      }
+
+      removeDataButton.onclick = () => {
+        localStorage.removeItem('name')
+        output.textContent = localStorage.getItem('name')
+      }
+
+      // use localStorage.clear() to clear all localStorage data
+    </script>
+  </body>
+</html>
