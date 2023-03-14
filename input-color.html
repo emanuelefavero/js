@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="color" />
+    <h1 style="display: inline" id="output">Hello</h1>
+
+    <script>
+      const color = document.querySelector('input[type="color"]')
+      const output = document.querySelector('#output')
+
+      color.addEventListener('input', () => {
+        output.style.color = color.value
+        output.textContent = color.value
+      })
+    </script>
+  </body>
+</html>
