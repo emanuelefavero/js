@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>
+      The FormData interface provides a way to easily construct a set of
+      key/value pairs representing form fields and their values.
+    </p>
+
+    <form>
+      <input type="text" name="name" placeholder="Your name..." />
+      <input type="password" name="password" placeholder="Your password..." />
+      <button>Submit</button>
+    </form>
+
+    <h1 id="output"></h1>
+
+    <script>
+      const button = document.querySelector('button')
+
+      button.addEventListener('click', (e) => {
+        e.preventDefault()
+
+        const output = document.querySelector('#output')
+        const form = document.querySelector('form')
+
+        const formData = new FormData(form)
+
+        // GET VALUES BY NAME
+        output.innerHTML = `N: ${formData.get('name')} P: ${formData.get(
+          'password'
+        )}`
+
+        // GET ALL FORM VALUES
+        // for (let pair of formData) {
+        //   output.innerHTML += `${pair[0]}: ${pair[1]} `
+        // }
+      })
+    </script>
+  </body>
+</html>
