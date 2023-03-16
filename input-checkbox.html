@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form>
+      <p>Select your favorite colors:</p>
+      <label
+        ><input type="checkbox" name="color" value="red" checked /> Red</label
+      ><br />
+      <label><input type="checkbox" name="color" value="green" /> Green</label
+      ><br />
+      <label><input type="checkbox" name="color" value="blue" /> Blue</label
+      ><br />
+      <br />
+    </form>
+    <h1 id="output"></h1>
+
+    <script>
+      const checkboxes = document.querySelectorAll('input[type="checkbox"]')
+      const output = document.querySelector('#output')
+
+      checkboxes.forEach((checkbox) => {
+        checkbox.addEventListener('change', function () {
+          if (this.checked)
+            output.innerHTML += this.value + ' is checked' + '<br />'
+          else output.innerHTML += this.value + ' is unchecked' + '<br />'
+        })
+      })
+    </script>
+  </body>
+</html>
