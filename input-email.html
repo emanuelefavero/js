@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form>
+      <!-- The email input value is automatically validated to ensure it is a properly formatted e-mail address  -->
+      <input type="email" />
+      <input type="submit" value="Submit" />
+    </form>
+    <h1 id="output">Hello</h1>
+
+    <script>
+      const email = document.querySelector('input[type="email"]')
+      const output = document.querySelector('#output')
+      const form = document.querySelector('form')
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault()
+
+        // output the characters before the @ symbol in the email address
+        output.textContent = `Hello ${email.value.split('@')[0]}`
+      })
+    </script>
+  </body>
+</html>
