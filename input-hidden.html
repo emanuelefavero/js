@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form>
+      <!-- The hidden input is invisible to the user, but its value will be sent when the user submit the form  -->
+      <input type="hidden" value="John" />
+      <!-- <input type="submit" value="Submit" /> -->
+    </form>
+    <h1 id="output">Hello</h1>
+
+    <script>
+      const hiddenInput = document.querySelector('input[type="hidden"]')
+      const output = document.querySelector('#output')
+
+      output.textContent = `Hello ${hiddenInput.value}`
+    </script>
+  </body>
+</html>
