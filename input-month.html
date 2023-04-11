@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- The input month tag is used to create a month input field. -->
+    <form action="">
+      <label for="month">Enter your birth month:</label>
+      <input type="month" id="month" name="month" />
+    </form>
+    <h1 id="output"></h1>
+
+    <script>
+      const month = document.getElementById('month')
+      const output = document.getElementById('output')
+
+      month.addEventListener('change', function () {
+        output.innerHTML = month.value
+      })
+    </script>
+  </body>
+</html>
