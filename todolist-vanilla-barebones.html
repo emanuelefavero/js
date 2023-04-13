@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ChatGPT Projects | Todo List</title>
+  </head>
+  <body>
+    <h1>To-Do List</h1>
+    <form>
+      <input type="text" id="new-task" placeholder="Add New Task" />
+      <button type="submit" id="add-btn">Add</button>
+    </form>
+    <ul id="todo-list"></ul>
+    <script>
+      const newTaskInput = document.getElementById('new-task')
+      const addTaskButton = document.getElementById('add-btn')
+      const todoList = document.getElementById('todo-list')
+
+      function addTask(event) {
+        event.preventDefault()
+
+        const taskText = newTaskInput.value
+        if (taskText.trim() === '') {
+          return
+        }
+        const task = document.createElement('li')
+        task.innerText = taskText
+        todoList.appendChild(task)
+        newTaskInput.value = ''
+      }
+
+      addTaskButton.addEventListener('click', addTask)
+    </script>
+  </body>
+</html>
