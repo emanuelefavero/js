@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>
+      Set throttle to "Slow 3G" in Chrome DevTools Network tab to see the abort
+      in action
+    </p>
+    <button data-fetch-posts-button>Fetch Posts</button>
+    <button data-abort-button>Abort Fetch Request</button>
+    <h3 data-abort-message></h3>
+    <h1>Posts</h1>
+    <ul data-posts-list></ul>
+  </body>
+
+  <script>
+    // AbortController allows you to abort fetch requests and other asynchronous tasks such as downloading files
+    // NOTE: When you abort a fetch request, the promise is rejected with an AbortError
+    const fetchPostsButton = document.querySelector('[data-fetch-posts-button]')
+    const abortButton = document.querySelector('[data-abort-button]')
+    const abortMessage = document.querySelector('[data-abort-message]')
+    const postsList = document.querySelector('[data-posts-list]')
+
+    let controller
+
+    fetchPostsButton.addEventListener('click', () => {
+      controller = new AbortController()
+      const signal = controller.signal
+
+      fetch('https://jsonplaceholder.typicode.com/posts', { signal })
+        .then((response) => response.json())
+        .then((posts) => {
+          posts.forEach((post) => {
+            const li = document.createElement('li')
+            li.innerText = post.title
+            postsList.appendChild(li)
+
+            abortMessage.innerText = ''
+            controller = null
+          })
+        })
+    })
+
+    abortButton.addEventListener('click', () => {
+      if (controller) {
+        controller.abort()
+        abortMessage.innerText = 'Fetch Request Aborted'
+      }
+    })
+  </script>
+</html>
