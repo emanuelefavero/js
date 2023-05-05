@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      /* Oswald Google Font */
+      @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-size: 5rem;
+        text-transform: uppercase;
+        font-family: 'Oswald', sans-serif;
+      }
+      #target-text {
+        letter-spacing: 0.2em;
+        font-weight: 400;
+        transition: letter-spacing 0.3s ease-out, font-weight 0.3s ease-out;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="target-text">Emanuele Favero</div>
+
+    <script>
+      const targetText = document.getElementById('target-text')
+
+      function handleMouseMove(event) {
+        const viewportWidth = window.innerWidth
+        const mousePosition = event.clientX
+        const centerThreshold = viewportWidth / 2
+        const distanceFromCenter = Math.abs(mousePosition - centerThreshold)
+        const maxDistance = centerThreshold
+        const minLetterSpacing = -0.05
+        const maxLetterSpacing = 0.15
+        const letterSpacingRange = maxLetterSpacing - minLetterSpacing
+        const letterSpacingIncrement = letterSpacingRange / maxDistance
+        const minFontWeight = 100
+        const maxFontWeight = 900
+        const fontWeightRange = maxFontWeight - minFontWeight
+        const fontWeightIncrement = fontWeightRange / maxDistance
+
+        let letterSpacing =
+          maxLetterSpacing - distanceFromCenter * letterSpacingIncrement
+        let fontWeight =
+          maxFontWeight - distanceFromCenter * fontWeightIncrement
+
+        if (letterSpacing < minLetterSpacing) {
+          letterSpacing = minLetterSpacing
+        } else if (letterSpacing > maxLetterSpacing) {
+          letterSpacing = maxLetterSpacing
+        }
+
+        if (fontWeight < minFontWeight) {
+          fontWeight = minFontWeight
+        } else if (fontWeight > maxFontWeight) {
+          fontWeight = maxFontWeight
+        }
+
+        targetText.style.letterSpacing = `${letterSpacing}em`
+        targetText.style.fontWeight = fontWeight
+      }
+
+      document.addEventListener('mousemove', handleMouseMove)
+    </script>
+  </body>
+</html>
