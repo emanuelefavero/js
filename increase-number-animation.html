@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 id="counter">0</h1>
+
+    <script>
+      // Function to animate the number counting effect
+      function countTo(target, duration) {
+        const counterElement = document.getElementById('counter')
+        const start = 0
+        const increment = target / duration
+
+        let current = start
+        let timer = setInterval(function () {
+          current += increment
+          counterElement.textContent = Math.round(current)
+
+          if (current >= target) {
+            clearInterval(timer)
+            counterElement.textContent = target
+          }
+        }, 10)
+      }
+
+      window.onload = () => {
+        // NOTE: start animation: countTo(target, duration)
+        countTo(100, 200) // Example: Count from 0 to 100 in 200 milliseconds
+      }
+    </script>
+  </body>
+</html>
