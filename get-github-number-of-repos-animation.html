@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GitHub Repository Count Animation</title>
+  </head>
+  <body>
+    <h1>GitHub Repository Count (Animated)</h1>
+
+    <h1 id="counter">0</h1>
+
+    <script>
+      function countTo(target, duration) {
+        const counterElement = document.getElementById('counter')
+        const start = 0
+        const increment = target / duration
+
+        let current = start
+        let timer = setInterval(function () {
+          current += increment
+          counterElement.textContent = Math.round(current)
+
+          if (current >= target) {
+            clearInterval(timer)
+            counterElement.textContent = target
+          }
+        }, 10)
+      }
+
+      async function getRepositoryCount(username) {
+        await fetch(`https://api.github.com/users/${username}`)
+          .then((response) => response.json())
+          .then((data) => {
+            const repositoriesCount = data.public_repos
+
+            // Start animation
+            countTo(repositoriesCount, 200)
+          })
+          .catch((error) => {
+            console.error(error)
+          })
+      }
+
+      // Call the function with your desired username
+      getRepositoryCount('emanuelefavero')
+    </script>
+  </body>
+</html>
