@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>GitHub Repository Count</h1>
+
+    <!-- OUTPUT -->
+    <p id="repositoryCountOutput"></p>
+
+    <script>
+      async function getRepositoryCount() {
+        // NOTE: Replace this with your username
+        const username = 'emanuelefavero'
+
+        // GET OUTPUT ELEMENT
+        const repositoryCountOutput = document.getElementById(
+          'repositoryCountOutput'
+        )
+
+        await fetch(`https://api.github.com/users/${username}`)
+          .then((response) => response.json())
+          .then((data) => {
+            const repositoriesCount = data.public_repos
+
+            // OUTPUT
+            repositoryCountOutput.textContent = `Number of repositories for ${username}: ${repositoriesCount}`
+          })
+          .catch((error) => {
+            console.error(error)
+          })
+      }
+
+      window.onload = getRepositoryCount
+    </script>
+  </body>
+</html>
