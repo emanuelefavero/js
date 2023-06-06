@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Change Navbar Style Based on Scroll</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: sans-serif;
+      }
+
+      body {
+        background: #222;
+        min-height: 200vh;
+      }
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 80px;
+        background: #fff;
+        padding: 0 50px;
+        transition: 0.5s;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .icon {
+        background: #333;
+      }
+      ul {
+        display: flex;
+      }
+      ul li {
+        list-style: none;
+      }
+      ul li a {
+        position: relative;
+        color: #333;
+        padding: 5px 20px;
+        font-size: 1.1em;
+        text-decoration: none;
+        font-weight: bold;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
+      .icon ul li a {
+        color: #fff;
+      }
+      ul li a span {
+        transition: 0.5s;
+        transition-delay: calc(0.05s * var(--i));
+      }
+      ul li a span:nth-child(2) {
+        position: absolute;
+        transform: translateY(35px);
+        font-size: 1.6em;
+      }
+      .icon ul li a span:nth-child(2) {
+        transform: translateY(2px);
+      }
+      .icon ul li a span:nth-child(1) {
+        transform: translateY(-30px);
+      }
+
+      .brand {
+        position: relative;
+        font-size: 1.8em;
+        font-weight: bold;
+        text-decoration: none;
+        color: #333;
+        padding: 5px 0;
+        overflow: hidden;
+      }
+      .brand span {
+        transition: 0.5s;
+        display: block;
+      }
+      .brand span:nth-child(1) {
+        position: absolute;
+        transform: translateY(-80px);
+        font-size: 1.5em;
+      }
+      .icon .brand span:nth-child(1) {
+        transform: translateY(-5px);
+        color: #fff;
+      }
+      .icon .brand span:nth-child(2) {
+        transform: translateY(35px);
+      }
+    </style>
+  </head>
+  <body>
+    <nav id="navbar">
+      <a href="#" class="brand">
+        <span><ion-icon name="logo-apple"></ion-icon></span>
+        <span>Apple</span>
+      </a>
+      <ul>
+        <!-- --i = set the transition delay -->
+        <li style="--i: 3">
+          <a href="#">
+            <span>Home</span>
+            <span><ion-icon name="home-outline"></ion-icon></span>
+          </a>
+        </li>
+        <li style="--i: 6">
+          <a href="#">
+            <span>Videos</span>
+            <span><ion-icon name="videocam-outline"></ion-icon></span>
+          </a>
+        </li>
+        <li style="--i: 9">
+          <a href="#">
+            <span>Photos</span>
+            <span><ion-icon name="image-outline"></ion-icon></span>
+          </a>
+        </li>
+        <li style="--i: 12">
+          <a href="#">
+            <span>Team</span>
+            <span><ion-icon name="people-outline"></ion-icon></span>
+          </a>
+        </li>
+        <li style="--i: 16">
+          <a href="#">
+            <span>Contact</span>
+            <span><ion-icon name="mail-outline"></ion-icon></span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <script>
+      // Scroll position at the top of the page
+      let lastScrollTop = 0
+
+      // Get the navbar
+      navbar = document.getElementById('navbar')
+
+      // When the user scrolls the page
+      window.addEventListener('scroll', function () {
+        // Get the current scroll position
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop
+
+        // If the user scrolls down
+        if (scrollTop > lastScrollTop) {
+          // Add the icon class to the navbar
+          navbar.classList.add('icon')
+        } else {
+          // Remove the icon class from the navbar
+          navbar.classList.remove('icon')
+        }
+
+        // Update the scroll position
+        lastScrollTop = scrollTop
+      })
+    </script>
+  </body>
+</html>
