@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input
+      type="text"
+      placeholder="Write Something . . ."
+      maxlength="16"
+      class="input"
+    />
+    <span class="counter"></span>
+
+    <!-- JS -->
+    <script>
+      // NOTE: This script will count the number of remaining characters in the input field from the maxlength value to 0
+
+      let input = document.querySelector('.input')
+      let counter = document.querySelector('.counter')
+
+      // Get maxlength value from input
+      maxlength = input.getAttribute('maxlength')
+
+      // Set counter value on page load
+      counter.innerText = maxlength
+
+      // Set dynamic counter value on keyup
+      input.onkeyup = () => {
+        counter.innerText = maxlength - input.value.length
+      }
+    </script>
+  </body>
+</html>
