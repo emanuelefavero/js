@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Autocomplete</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <h1>Autocomplete</h1>
+    <input type="text" id="autocompleteInput" placeholder="Enter a word" />
+    <button id="addButton">Add Word</button>
+
+    <ul id="suggestionsList"></ul>
+
+    <script>
+      // -------------------
+      // Trie implementation
+      class TrieNode {
+        constructor() {
+          this.children = {}
+        }
+      }
+
+      class Trie {
+        constructor() {
+          this.root = new TrieNode()
+        }
+
+        insert(word) {
+          let currentNode = this.root
+
+          for (let i = 0; i < word.length; i++) {
+            let char = word[i]
+
+            if (!currentNode.children[char]) {
+              let newNode = new TrieNode()
+              currentNode.children[char] = newNode
+
+              currentNode = newNode
+            } else {
+              currentNode = currentNode.children[char]
+            }
+          }
+
+          currentNode.children['*'] = true
+        }
+
+        search(word) {
+          let currentNode = this.root
+
+          for (let i = 0; i < word.length; i++) {
+            let char = word[i]
+
+            if (!currentNode.children[char]) return false
+
+            currentNode = currentNode.children[char]
+          }
+
+          return currentNode
+        }
+
+        collectAllWords(node = this.root, word = '', words = []) {
+          for (let key in node.children) {
+            let child = node.children[key]
+
+            if (key === '*') {
+              words.push(word)
+            } else {
+              this.collectAllWords(child, word + key, words)
+            }
+          }
+
+          return words
+        }
+
+        autoComplete(prefix) {
+          let currentNode = this.search(prefix)
+
+          if (!currentNode) return null
+
+          return this.collectAllWords(currentNode, prefix)
+        }
+      }
+      // -------------------
+
+      // Initialize the Trie
+      const trie = new Trie()
+
+      // Insert sample words into the Trie
+      trie.insert('apple')
+      trie.insert('banana')
+      trie.insert('orange')
+      trie.insert('grape')
+      trie.insert('pineapple')
+
+      // -------------------
+
+      // Get input, add button, and suggestions list elements
+      const input = document.getElementById('autocompleteInput')
+      const addButton = document.getElementById('addButton')
+      const suggestionsList = document.getElementById('suggestionsList')
+
+      // Display initial list of fruits
+      const initialSuggestions = trie.autoComplete('')
+      for (let i = 0; i < initialSuggestions.length; i++) {
+        const listItem = document.createElement('li')
+        listItem.textContent = initialSuggestions[i]
+        suggestionsList.appendChild(listItem)
+      }
+
+      // Event listener for input changes
+      input.addEventListener('input', () => {
+        const prefix = input.value
+        const suggestions = trie.autoComplete(prefix)
+
+        // Clear previous suggestions
+        suggestionsList.innerHTML = ''
+
+        // Display new suggestions
+        if (suggestions) {
+          for (let i = 0; i < suggestions.length; i++) {
+            const listItem = document.createElement('li')
+            listItem.textContent = suggestions[i]
+            suggestionsList.appendChild(listItem)
+          }
+        }
+      })
+
+      // Event listener for add button click
+      addButton.addEventListener('click', () => {
+        const newWord = input.value.trim()
+
+        if (newWord !== '') {
+          trie.insert(newWord)
+          input.value = ''
+
+          // Update the suggestions list
+          const suggestions = trie.autoComplete('')
+          suggestionsList.innerHTML = ''
+
+          for (let i = 0; i < suggestions.length; i++) {
+            const listItem = document.createElement('li')
+            listItem.textContent = suggestions[i]
+            suggestionsList.appendChild(listItem)
+          }
+        }
+      })
+
+      // Event listener for when the user clicks 'Enter' in the input field (add word to the list)
+      input.addEventListener('keyup', (event) => {
+        if (event.keyCode === 13) {
+          addButton.click() // Simulate a click on the add button
+        }
+      })
+    </script>
+  </body>
+</html>
