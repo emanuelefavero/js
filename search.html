@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Search Feature</h1>
+    <input type="text" id="searchInput" placeholder="Search..." />
+    <ul id="list">
+      <li>Apple</li>
+      <li>Mango</li>
+      <li>Orange</li>
+      <li>Banana</li>
+      <li>Pineapple</li>
+    </ul>
+
+    <script>
+      const searchInput = document.getElementById('searchInput')
+      const list = document.querySelectorAll('#list li')
+
+      searchInput.addEventListener('keyup', (e) => {
+        const searchValue = e.target.value.toLowerCase()
+
+        list.forEach((item) => {
+          const itemText = item.textContent.toLowerCase()
+          const itemTextIncludesSearchValue = itemText.includes(searchValue)
+
+          if (itemTextIncludesSearchValue) {
+            item.style.display = 'block'
+          } else {
+            item.style.display = 'none'
+          }
+        })
+      })
+    </script>
+  </body>
+</html>
