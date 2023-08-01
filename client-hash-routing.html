@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Multiple Routes Example</title>
+  </head>
+  <body>
+    <nav>
+      <a href="#/">Home</a>
+      <a href="#/about">About</a>
+      <a href="#/contact">Contact</a>
+    </nav>
+    <div id="content"></div>
+
+    <script>
+      // SINGLE PAGE APPLICATION CLIENT SITE ROUTING USING HASHES (#)
+      // @see https://dev.to/thedevdrawer/single-page-application-routing-using-hash-or-url-9jh
+      // Router function to handle route changes
+      function router() {
+        const contentDiv = document.getElementById('content')
+        const route = window.location.hash.slice(1) || '/' // Get the current route from the URL
+
+        // Define your routes and corresponding content
+        const routes = {
+          '/': '<h1>Welcome to Home!</h1>',
+          '/about': '<h1>About Us</h1><p>We are a company that...</p>',
+          '/contact': '<h1>Contact Us</h1><p>You can reach us at...</p>',
+        }
+
+        // Check if the route exists, if not, default to home
+        const selectedContent = routes[route] || routes['/']
+
+        // Update the content based on the selected route
+        contentDiv.innerHTML = selectedContent
+      }
+
+      // Listen for changes in the URL and call the router function
+      window.addEventListener('hashchange', router)
+      window.addEventListener('DOMContentLoaded', router)
+    </script>
+  </body>
+</html>
