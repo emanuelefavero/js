@@ -52,3 +52,42 @@ console.log(formattedDateIT) // 25 dicembre 2023
 
 const formattedDateUK = specificDate.toLocaleDateString('en-GB', options)
 console.log(formattedDateUK) // 25 December 2023
+
+// Get current month name
+const monthNames = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+]
+const monthName = monthNames[currentDate.getMonth()]
+console.log(monthName) // August
+
+// Get current day name
+const dayNames = [
+  'Sunday',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+]
+const dayName = dayNames[currentDate.getDay()]
+console.log(dayName) // Thursday
+
+// Get current time
+const currentTime = currentDate.toLocaleTimeString()
+console.log(currentTime) // 12:00:00 AM
+
+// Get current date
+const currentDateOnly = currentDate.toLocaleDateString()
+console.log(currentDateOnly) // 7/11/2021
