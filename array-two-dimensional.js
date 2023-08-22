@@ -17,3 +17,12 @@ for (let i = 0; i < array.length; i++) {
 }
 
 console.log(values) // [1, 2, 3, 4, 5, 6]
+
+// You can also use the flat() method to get all the values of a two-dimensional array as a single-dimensional array
+console.log(array.flat()) // [1, 2, 3, 4, 5, 6]
+
+// You can also use the reduce() method to get all the values of a two-dimensional array as a single-dimensional array
+console.log(
+  array.reduce((accumulator, current) => accumulator.concat(current), [])
+)
+// [1, 2, 3, 4, 5, 6]
