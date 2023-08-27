@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Worker Example</title>
+    <!-- A web worker is a JavaScript file running in the background, without affecting the performance of the page  -->
+    <!-- When executing scripts in an HTML page, the page becomes unresponsive until the script is finished, a web worker solves this problem -->
+    <!-- TIP: You can only communicate with a web worker via messages, and you can't access the DOM from within a web worker -->
+  </head>
+  <body>
+    <button id="startButton">Start Counter</button>
+    <button id="stopButton">Stop Counter</button>
+    <h2 id="elapsedTime"></h2>
+
+    <script>
+      const startButton = document.getElementById('startButton')
+      const stopButton = document.getElementById('stopButton')
+      const elapsedTime = document.getElementById('elapsedTime')
+      let worker
+
+      startButton.addEventListener('click', () => {
+        // Create a new worker
+        worker = new Worker('web-worker.js')
+
+        // Listen for messages from the worker
+        worker.addEventListener('message', (e) => {
+          elapsedTime.textContent = e.data
+        })
+
+        // Send a message to the worker to start the timer
+        worker.postMessage('start')
+      })
+
+      stopButton.addEventListener('click', () => {
+        // Terminate the worker if it exists
+        if (worker) {
+          worker.terminate()
+          // elapsedTime.textContent = '0'
+        }
+      })
+    </script>
+  </body>
+</html>
