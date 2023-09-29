@@ -1,18 +1,19 @@
 // SPLICE - replace or remove elements in array
 let fruits = ['banana', 'cherry', 'kiwi', 'orange']
-console.log('original', fruits)
 
-// removes item, returns that item [ 'banana' ]
-console.log('splice(0, 1)', fruits.splice(0, 1))
+// removes one item, returns that item
+console.log(fruits.splice(0, 1)) // [ 'banana' ]
 
-console.log('original', fruits)
+// TIP: The second argument is the number of items to remove, starting from the first argument index
 
-// removes items from index 1 to end, returns removed items [ 'kiwi', 'orange' ]
-console.log('splice(1)', fruits.splice(1))
+console.log(fruits) // [ 'cherry', 'kiwi', 'orange' ]
 
-console.log('original', fruits)
+// removes items from index 1 to end, returns removed items
+console.log(fruits.splice(1)) // [ 'kiwi', 'orange' ]
+
+console.log(fruits) // [ 'cherry' ]
 
 // replace items from index 0 to 1, returns removed items [ 'cherry' ]
-console.log('splice(0, 1, "apple")', fruits.splice(0, 1, 'apple'))
+console.log(fruits.splice(0, 1, 'apple')) // [ 'cherry' ]
 
-console.log('original', fruits)
+console.log(fruits) // [ 'apple' ]
