@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- This is a download link created without using a Blob -->
+    <a href="data:text/plain;charset=utf-8,Hello, World" download="hello.txt"
+      >Download File (No Blob)</a
+    >
+
+    <!-- This is a download link created using a blob -->
+    <script>
+      // Create a Blob containing text data
+      const data = new Blob(['Hello, World!'], { type: 'text/plain' })
+
+      // Create a download link
+      const downloadLink = document.createElement('a')
+      downloadLink.href = window.URL.createObjectURL(data)
+      downloadLink.download = 'hello.txt'
+      downloadLink.textContent = 'Download File (Blob)'
+
+      // Append the download link to the document body
+      document.body.appendChild(downloadLink)
+    </script>
+  </body>
+</html>
