@@ -18,3 +18,11 @@ console.log((y ||= 2)) // 2, ||= returns right if y is falsy
 
 let z = null
 console.log((z ??= 2)) // 2, ??= returns right if z is null or undefined
+
+a = 1
+console.log(!(a === 1)) // false, ! negates the result of the comparison
+
+// OR operator
+a = 0
+b = 1
+console.log(a === 1 || b === 1) // true, || returns true if either is true
