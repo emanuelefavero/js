@@ -2,3 +2,6 @@
 let ages = [18, 18, 21, 34]
 console.log(ages.indexOf(18)) // 0
 console.log(ages.indexOf(33)) // -1
+
+let chars = ['a', 'b', 'c', 'd', 'b']
+console.log(chars.indexOf('b', 2)) // 4 - start searching from index 2
