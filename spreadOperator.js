@@ -22,3 +22,9 @@ let user = {
 }
 
 console.log(user) // { name: 'John', lastName: 'Locke', age: 30 }
+
+// Flatten array
+let nestedArray = [1, [2, 3], [4, 5]]
+let flatArray = [].concat(...nestedArray)
+
+console.log(flatArray) // [1, 2, 3, 4, 5]
