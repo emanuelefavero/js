@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Onchange Event Example</title>
+  </head>
+  <body>
+    <!-- onchange = the changes happen only after the element loses focus -->
+    <!-- NOTE: This is a different behavior compared to React, which has onChange behave like oninput -->
+    <label for="myInput">Type Something:</label>
+    <input type="text" id="myInput" onchange="showValue()" />
+
+    <p id="result">Result will be displayed here</p>
+
+    <script>
+      const showValue = () => {
+        const inputValue = document.getElementById('myInput').value
+        document.getElementById('result').innerText = `You typed: ${inputValue}`
+      }
+
+      const special = document.getElementById('special')
+      special.style.color = 'red'
+    </script>
+  </body>
+</html>

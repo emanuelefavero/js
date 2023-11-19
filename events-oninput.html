@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oninput Event Example</title>
+  </head>
+  <body>
+    <!-- oninput = the changes happen immediately after the element is changed -->
+    <!-- NOTE: The oninput event acts like React onChange -->
+    <!-- NOTE: onchange event only makes the changes when the element loseds focus -->
+    <label for="myInput">Type Something:</label>
+    <input type="text" id="myInput" oninput="showValue()" />
+
+    <p id="result">Result will be displayed here</p>
+
+    <script>
+      const showValue = () => {
+        const inputValue = document.getElementById('myInput').value
+        document.getElementById('result').innerText = `You typed: ${inputValue}`
+      }
+
+      const special = document.getElementById('special')
+      special.style.color = 'red'
+    </script>
+  </body>
+</html>
