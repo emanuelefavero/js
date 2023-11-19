@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- TEST CONTENT -->
+    <section>
+      <h1>This is a test text</h1>
+      <p>See the console for console output</p>
+      <span id="date"></span>
+      <script>
+        document.getElementById('date').innerHTML = new Date().getFullYear()
+      </script>
+    </section>
+
+    <!-- TIP: This website shows the difference between innerHTML, textContent and innerText -->
+
+    <!-- OUTPUT -->
+    <h2>innerHTML</h2>
+    <p id="inner-html"></p>
+    <h2>textContent</h2>
+    <p id="text-content"></p>
+    <h2>innerText</h2>
+    <p id="inner-text"></p>
+
+    <script>
+      let section = document.querySelector('section')
+
+      let innerHTML = document.getElementById('inner-html')
+      let textContent = document.getElementById('text-content')
+      let innerText = document.getElementById('inner-text')
+
+      innerHTML.innerHTML = section.innerHTML
+      textContent.innerHTML = section.textContent
+      innerText.innerHTML = section.innerText
+
+      // CONSOLE OUTPUT
+      console.log('***innerHTML***', section.innerHTML)
+      console.log('***textContent***', section.textContent)
+      console.log('***innerText***', section.innerText)
+    </script>
+  </body>
+</html>
