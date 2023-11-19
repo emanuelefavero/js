@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOMContentLoaded Example</title>
+  </head>
+  <body>
+    <h1 id="output">Waiting for DOMContentLoaded event...</h1>
+
+    <script>
+      // Using the DOMContentLoaded event to execute code after the DOM is fully loaded
+      document.addEventListener('DOMContentLoaded', () => {
+        // Update the content of the h1 element
+        document.getElementById('output').textContent = 'DOM Content Loaded!'
+
+        // You can now safely manipulate the DOM or perform other actions.
+        // Add your additional JavaScript code here.
+      })
+    </script>
+  </body>
+</html>
