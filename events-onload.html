@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>onload Event Example</title>
+  </head>
+  <body>
+    <h1>Hello, this is a sample page!</h1>
+    <p>This content is part of the example.</p>
+
+    <script>
+      // onload = the changes happen only after the page has loaded
+      window.onload = function () {
+        pageLoaded()
+      }
+
+      function pageLoaded() {
+        alert('Page has finished loading!')
+        // You can perform additional actions here after the page has loaded
+      }
+    </script>
+  </body>
+</html>
