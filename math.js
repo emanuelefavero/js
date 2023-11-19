@@ -42,6 +42,9 @@ console.log(Math.floor(1.9)) // 1
 console.log(Math.round(1.5)) // 2
 console.log(Math.round(1.49)) // 1
 
+// Math.trunc(x) returns the integer part of x (the part before the decimal point)
+console.log(Math.trunc(1.9)) // 1
+
 // Math.max(x, y, z, ...) returns the number with the highest value
 console.log(Math.max(2, 3, 1)) // 3
 
@@ -62,3 +65,9 @@ console.log(Math.floor(Math.random() * 10) + 1) // e.g. 4
 
 // Get a random floating point number between 1 and 10 with 2 decimals
 console.log((Math.random() * 10 + 1).toFixed(2)) // e.g. 7.25
+
+// Math.sign(x) returns if x is negative, null or positive
+console.log(Math.sign(-25)) // -1
+console.log(Math.sign(null)) // 0
+console.log(Math.sign(0)) // 0
+console.log(Math.sign(4)) // 1
