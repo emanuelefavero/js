@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>onclick Event Example</title>
+
+    <style>
+      button {
+        width: 100px;
+        height: 50px;
+        background-color: lightblue;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .active {
+        background-color: magenta;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="clickButton" onclick="handleClick()">Click me</button>
+
+    <script>
+      function handleClick() {
+        // Toggle class
+        const button = document.getElementById('clickButton')
+
+        button.classList.toggle('active')
+
+        // Update button text based on the presence of the 'active' class
+        button.innerText = button.classList.contains('active')
+          ? 'Click me again!'
+          : 'Click me'
+      }
+    </script>
+  </body>
+</html>
