@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mouse Events Example</title>
+    <style>
+      #hoverDiv {
+        width: 100px;
+        height: 50px;
+        background-color: lightblue;
+        text-align: center;
+        line-height: 50px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="hoverDiv"
+      onmouseover="changeColor(this, true)"
+      onmouseout="changeColor(this, false)"
+    >
+      Hover me!
+    </div>
+
+    <script>
+      const changeColor = (element, isMouseOver) => {
+        if (isMouseOver) {
+          element.style.backgroundColor = 'lightgreen'
+        } else {
+          element.style.backgroundColor = 'lightblue'
+        }
+      }
+    </script>
+  </body>
+</html>
