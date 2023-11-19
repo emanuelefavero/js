@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Keyboard Events Example</title>
+  </head>
+  <body>
+    <p>Press any key or enter key:</p>
+    <input
+      type="text"
+      id="keyInput"
+      onkeydown="handleKeyEvent('Key Down', event)"
+      onkeyup="handleKeyEvent('Key Up', event)"
+      onkeypress="handleKeyEvent('Key Press', event), handleEnterPress(event)"
+    />
+
+    <div id="output"></div>
+    <div id="output2"></div>
+
+    <script>
+      const handleKeyEvent = (eventType, event) => {
+        const output = document.getElementById('output')
+        const keyPressed = event.key
+
+        output.innerHTML = `${eventType}: ${keyPressed}`
+      }
+
+      const handleEnterPress = (event) => {
+        const output2 = document.getElementById('output2')
+
+        if (event.key === 'Enter' || event.keyCode === 13) {
+          output2.innerHTML = '<h2>You pressed Enter!</h2>'
+        } else {
+          output2.innerHTML = ''
+        }
+      }
+    </script>
+  </body>
+</html>
