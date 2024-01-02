@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- SHADOW DOM -->
+    <div id="root"></div>
+    <span>I'm not in the shadow DOM</span>
+
+    <div>
+      <button id="upper" type="button">Uppercase span elements</button>
+      <button id="reload" type="button">Reload</button>
+      <button id="upperShadowDOM" type="button">
+        Uppercase shadow DOM span elements
+      </button>
+    </div>
+
+    <script>
+      const root = document.querySelector('#root')
+      const shadow = root.attachShadow({ mode: 'open' })
+      const span = document.createElement('span')
+      span.textContent = 'I am in the shadow DOM'
+      shadow.appendChild(span)
+
+      // Uppercase the span elements
+      // TIP: This button will not uppercase the span element in the shadow DOM
+      const upper = document.querySelector('#upper')
+      upper.addEventListener('click', () => {
+        const spans = Array.from(document.querySelectorAll('span'))
+
+        for (const span of spans) {
+          span.textContent = span.textContent.toUpperCase()
+        }
+      })
+
+      // Reload the page with the reload button
+      const reload = document.querySelector('#reload')
+      reload.addEventListener('click', () => {
+        location.reload()
+      })
+
+      // Uppercase the span elements in the shadow DOM
+      // TIP: By using .shadowRoot, we can access the shadow DOM
+      const upperShadowDOM = document.querySelector('#upperShadowDOM')
+      upperShadowDOM.addEventListener('click', () => {
+        const spans = Array.from(root.shadowRoot.querySelectorAll('span'))
+
+        for (const span of spans) {
+          span.textContent = span.textContent.toUpperCase()
+        }
+      })
+    </script>
+  </body>
+</html>
