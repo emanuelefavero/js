@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      /* STYLE POPOVER */
+      [popover] {
+        font-family: sans-serif;
+        border: none;
+        background-color: #000;
+        color: #fff;
+        padding: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- TIP: The popover attribute adds a pop over at the center of the screen. It can't be positioned near the button. If you need that, use other methods -->
+    <button popovertarget="my-popover">Open Popover</button>
+    <div popover id="my-popover">Hello from Pop Over</div>
+  </body>
+</html>
