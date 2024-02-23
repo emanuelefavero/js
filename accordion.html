@@ -51,6 +51,14 @@
             padding: 0.8rem 1rem;
             display: flex;
             justify-content: space-between;
+
+            & i.icon {
+              transition: all 0.2s ease-in;
+
+              &.active {
+                transform: rotate(-180deg);
+              }
+            }
           }
 
           & p {
@@ -108,10 +116,12 @@
     <script>
       const accordionButton = document.querySelectorAll('.accordion button')
       const accordionContent = document.querySelectorAll('.accordion p')
+      const accordionIcon = document.querySelectorAll('.icon')
 
       accordionButton.forEach((button, index) => {
         button.addEventListener('click', () => {
           accordionContent[index].classList.toggle('active')
+          accordionIcon[index].classList.toggle('active')
         })
       })
     </script>
