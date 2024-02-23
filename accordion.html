@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script
+      src="https://kit.fontawesome.com/fb89be9943.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <style>
+      * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+      }
+
+      body {
+        padding: 2rem;
+        font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Inter',
+          'SF Pro', 'San Francisco Pro', 'Helvetica Neue', Helvetica, 'Segoe UI',
+          Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      button {
+        background-color: #fff;
+        border: 0;
+      }
+
+      ul.accordion {
+        border-top: 1px solid rgba(71, 85, 105, 0.2);
+        /* background-color: rgba(255, 0, 0, 0.257); */
+
+        & li.item {
+          color: #475569;
+          border-bottom: 1px solid rgba(71, 85, 105, 0.2);
+
+          & button {
+            color: #1e293b;
+            font-weight: bold;
+            font-size: 1rem;
+            letter-spacing: 0.01rem;
+            cursor: pointer;
+            width: 100%;
+            padding: 0.8rem 1rem;
+            display: flex;
+            justify-content: space-between;
+          }
+
+          & p {
+            padding-bottom: 0.8rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="accordion">
+      <li class="item">
+        <button>
+          Lorem ipsum dolor <i class="icon fa-solid fa-chevron-down"></i>
+        </button>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus
+          velit sunt alias aperiam, deserunt tempora ratione. Incidunt iste quas
+          consequuntur!
+        </p>
+      </li>
+      <li class="item">
+        <button>
+          Lorem ipsum dolor <i class="icon fa-solid fa-chevron-down"></i>
+        </button>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus
+          velit sunt alias aperiam, deserunt tempora ratione. Incidunt iste quas
+          consequuntur!
+        </p>
+      </li>
+      <li class="item">
+        <button>
+          Lorem ipsum dolor <i class="icon fa-solid fa-chevron-down"></i>
+        </button>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus
+          velit sunt alias aperiam, deserunt tempora ratione. Incidunt iste quas
+          consequuntur!
+        </p>
+      </li>
+    </ul>
+  </body>
+</html>
