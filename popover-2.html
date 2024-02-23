@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      body {
+        font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Inter',
+          'SF Pro', 'San Francisco Pro', 'Helvetica Neue', Helvetica, 'Segoe UI',
+          Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+      }
+
+      .popover {
+        /* Start hidden */
+        visibility: hidden;
+        opacity: 0;
+
+        font-weight: bold;
+        text-transform: uppercase;
+        position: absolute;
+
+        background-color: #f0abfc;
+        border: 2px solid #000;
+        box-shadow: 2px 2px 0px rgba(0, 0, 0, 1);
+        border-radius: 0.6rem;
+
+        padding: 0.875rem;
+        margin-top: 0.5rem;
+
+        z-index: 1;
+        transition: opacity 0.25s, visibility 0.25s; /* transition */
+      }
+
+      .popover::before {
+        content: '';
+        position: absolute;
+        top: -10px; /* Adjust this value to position the triangle correctly */
+        left: 50%;
+        transform: translateX(-50%);
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid #000; /* Match popover background color */
+        filter: drop-shadow(
+          0 -1px 1px rgba(0, 0, 0, 0.1)
+        ); /* Optional: adds a slight shadow under the triangle for depth */
+      }
+
+      .popover::after {
+        content: '';
+        position: absolute;
+        top: -8px; /* Position just above the ::before to cover its bottom border */
+        left: 50%;
+        transform: translateX(-50%);
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 8px solid #f0abfc; /* Match popover background color */
+      }
+    </style>
+  </head>
+  <body>
+    <button id="popoverButton">Hover over me</button>
+    <div id="popover" class="popover" role="tooltip">Popover Content</div>
+
+    <script>
+      const popoverButton = document.getElementById('popoverButton')
+      const popover = document.getElementById('popover')
+
+      popoverButton.addEventListener('mouseover', function () {
+        popover.style.visibility = 'visible'
+        popover.style.opacity = '1'
+      })
+
+      popoverButton.addEventListener('mouseout', function () {
+        popover.style.opacity = '0'
+        // Use setTimeout to delay the visibility change until after the opacity transition completes
+        setTimeout(() => {
+          popover.style.visibility = 'hidden'
+        }, 250) // Match the duration of the opacity transition
+      })
+    </script>
+  </body>
+</html>
