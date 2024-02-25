@@ -59,8 +59,11 @@
         const content = document.getElementById('content')
         const loading = document.getElementById('loading')
         let page = 1
+        let isAllDataLoaded = false
 
         const getPosts = async () => {
+          if (isAllDataLoaded) return // If all data is loaded, don't fetch more
+
           loading.style.display = 'block' // Show loading indicator
 
           // Fetch posts - (5 posts per page)
@@ -68,6 +71,13 @@
             `https://jsonplaceholder.typicode.com/posts?_limit=5&_page=${page}`
           )
           const data = await response.json()
+
+          // If no data is returned, we've reached the end of the list, so stop fetching
+          if (data.length === 0) {
+            isAllDataLoaded = true
+            loading.style.display = 'none' // Hide loading indicator
+            return
+          }
 
           loading.style.display = 'none' // Hide loading indicator
 
@@ -92,7 +102,10 @@
             document.documentElement
 
           // Check if we're near the bottom of the page (5px margin)
-          if (scrollTop + clientHeight >= scrollHeight - 5) {
+          if (
+            !isAllDataLoaded && // If all data is loaded, don't fetch
+            scrollTop + clientHeight >= scrollHeight - 5
+          ) {
             // Near the bottom of the page, load more posts
             getPosts()
           }
