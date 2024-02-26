@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Trie Autocomplete</h1>
+
+    <input type="text" id="search" placeholder="Search fruits..." />
+
+    <div id="output"></div>
+
+    <script>
+      // * Trie Autocomplete
+      class Node {
+        constructor() {
+          this.children = {}
+          this.isEndOfWord = false
+        }
+      }
+
+      class Trie {
+        constructor() {
+          this.root = new Node()
+        }
+
+        insert(word) {
+          let current = this.root
+
+          for (let char of word) {
+            if (!current.children[char]) {
+              current.children[char] = new Node()
+            }
+
+            current = current.children[char]
+          }
+
+          current.isEndOfWord = true
+        }
+
+        // Check if a word or prefix exists in the trie
+        searchPrefix(prefix) {
+          let current = this.root
+
+          for (let char of prefix) {
+            if (!current.children[char]) return []
+            current = current.children[char]
+          }
+
+          return this._wordsWithPrefix(prefix, current)
+        }
+
+        // Helper method to get all words with a given prefix
+        _wordsWithPrefix(prefix, node) {
+          let words = []
+
+          // If the current node is the end of a word, add the prefix to the words array
+          if (node.isEndOfWord) words.push(prefix)
+
+          // Loop through each child node
+          for (let char in node.children) {
+            words = [
+              ...words,
+              this._wordsWithPrefix(prefix + char, node.children[char]),
+            ]
+
+            // TIP: By passing the prefix + char, we can keep track of the characters that we already visited
+          }
+
+          return words
+        }
+      }
+
+      // ------------------------------
+
+      // Create a trie and insert some words
+      const fruits = [
+        'apple',
+        'banana',
+        'blueberry',
+        'orange',
+        'pear',
+        'pineapple',
+      ]
+      const trie = new Trie()
+
+      for (let fruit of fruits) {
+        trie.insert(fruit)
+      }
+
+      // Get the search input and output div
+      const search = document.getElementById('search')
+      const output = document.getElementById('output')
+
+      search.addEventListener('input', () => {
+        // Get the words with the current prefix
+        const prefix = search.value.trim()
+        const words = trie.searchPrefix(prefix)
+
+        // Clear the output div
+        if (!prefix) {
+          output.innerHTML = ''
+          return
+        }
+
+        // Display the words
+        if (words.length) {
+          output.innerHTML = words.map((word) => `<p>${word}</p>`).join('')
+        } else {
+          output.innerHTML = '<p>No matches found</p>'
+        }
+      })
+    </script>
+  </body>
+</html>
