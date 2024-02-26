@@ -86,32 +86,37 @@
       ]
       const trie = new Trie()
 
-      for (let fruit of fruits) {
+      for (const fruit of fruits) {
         trie.insert(fruit)
       }
+
+      // ------------------------------
 
       // Get the search input and output div
       const search = document.getElementById('search')
       const output = document.getElementById('output')
 
-      search.addEventListener('input', () => {
-        // Get the words with the current prefix
-        const prefix = search.value.trim()
-        const words = trie.searchPrefix(prefix)
+      // Handle input event with debounce
+      let debounceTimeout
+      function handleInput() {
+        clearTimeout(debounceTimeout)
 
-        // Clear the output div
-        if (!prefix) {
-          output.innerHTML = ''
-          return
-        }
+        debounceTimeout = setTimeout(() => {
+          const value = search.value.trim()
 
-        // Display the words
-        if (words.length) {
-          output.innerHTML = words.map((word) => `<p>${word}</p>`).join('')
-        } else {
-          output.innerHTML = '<p>No matches found</p>'
-        }
-      })
+          if (value) {
+            const results = trie.searchPrefix(value)
+
+            output.innerHTML = results
+              .map((result) => `<p>${result}</p>`)
+              .join('')
+          } else {
+            output.innerHTML = ''
+          }
+        }, 300)
+      }
+
+      search.addEventListener('input', handleInput)
     </script>
   </body>
 </html>
