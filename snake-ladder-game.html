@@ -18,14 +18,14 @@
         overflow: hidden;
       }
 
-      .cont {
+      .game-container {
         display: grid;
         width: 600px;
         grid-template-columns: repeat(10, 1fr);
         margin: 0px 0 0px 0;
       }
 
-      .cont div {
+      .game-container div {
         width: 60px;
         height: 60px;
         border: 0.2px solid black;
@@ -126,7 +126,9 @@
       <button id="diceBtn">ROLL</button>
     </div>
 
-    <div class="cont">
+    <div class="box" id="b100"></div>
+    ` Code: `
+    <div class="game-container">
       <div class="box" id="b100"></div>
       <div class="box" id="b99"></div>
       <div class="box" id="b98"></div>
@@ -231,8 +233,6 @@
       <div class="box" id="b09"></div>
       <div class="box" id="b10"></div>
     </div>
-
-    <!-- <img src="snake ladder.png" alt="" /> -->
   </body>
 
   <script>
