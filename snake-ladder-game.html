@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+      }
+
+      .cont {
+        display: grid;
+        width: 600px;
+        grid-template-columns: repeat(10, 1fr);
+        margin: 0px 0 0px 0;
+      }
+
+      .cont div {
+        width: 60px;
+        height: 60px;
+        border: 0.2px solid black;
+      }
+
+      #p1,
+      #p2 {
+        width: 50px;
+        height: 50px;
+        border-radius: 100px;
+        background-color: rgb(236, 82, 82);
+        position: relative;
+        border: 3px solid black;
+
+        /* position: absolute; */
+      }
+
+      #p1 {
+        position: relative;
+        top: 0px;
+        transition: all linear 0.5s;
+        /* top: 0; */
+        left: -62px;
+        z-index: 2;
+      }
+
+      #p2 {
+        z-index: 2;
+        position: relative;
+        top: -55px;
+        left: -62px;
+        transition: all linear 0.5s;
+        background-color: rgb(243, 181, 46);
+      }
+
+      img {
+        position: relative;
+        top: -615px;
+        left: 8px;
+        /* z-index: -1; */
+        margin: 0;
+        width: 615px;
+        height: 615px;
+      }
+      #diceCont {
+        display: grid;
+        place-items: center;
+        position: absolute;
+        top: 200px;
+        left: 120px;
+        font-size: 2rem;
+        z-index: 99;
+      }
+      #diceBtn {
+        z-index: 99;
+        padding: 5px;
+        cursor: pointer;
+        background-color: rgb(75, 140, 197);
+        border-radius: 5px;
+        width: 200px;
+      }
+
+      @media (max-width: 1250px) {
+        #diceCont {
+          display: flex;
+          place-items: none;
+          top: 92vh;
+          left: 36vw;
+          border: 2px solid red;
+        }
+        #diceBtn {
+          width: 200px;
+          margin-left: 20px;
+        }
+      }
+      @media (max-width: 1250px) {
+        #diceCont {
+          display: flex;
+          place-items: none;
+          top: 99vh;
+          left: 10vw;
+          /* border: 2px solid red; */
+        }
+        #diceBtn {
+          width: 200px;
+          margin-left: 20px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Snakes and ladder</h1>
+
+    <div id="diceCont">
+      <p id="turn">Red's Turn :</p>
+      <p id="dice">0</p>
+      <button id="diceBtn">ROLL</button>
+    </div>
+
+    <div class="cont">
+      <div class="box" id="b100"></div>
+      <div class="box" id="b99"></div>
+      <div class="box" id="b98"></div>
+      <div class="box" id="b97"></div>
+      <div class="box" id="b96"></div>
+      <div class="box" id="b95"></div>
+      <div class="box" id="b94"></div>
+      <div class="box" id="b93"></div>
+      <div class="box" id="b92"></div>
+      <div class="box" id="b91"></div>
+      <div class="box" id="b81"></div>
+      <div class="box" id="b82"></div>
+      <div class="box" id="b83"></div>
+      <div class="box" id="b84"></div>
+      <div class="box" id="b85"></div>
+      <div class="box" id="b86"></div>
+      <div class="box" id="b87"></div>
+      <div class="box" id="b88"></div>
+      <div class="box" id="b89"></div>
+      <div class="box" id="b90"></div>
+      <div class="box" id="b80"></div>
+      <div class="box" id="b79"></div>
+      <div class="box" id="b78"></div>
+      <div class="box" id="b77"></div>
+      <div class="box" id="b76"></div>
+      <div class="box" id="b75"></div>
+      <div class="box" id="b74"></div>
+      <div class="box" id="b73"></div>
+      <div class="box" id="b72"></div>
+      <div class="box" id="b71"></div>
+      <div class="box" id="b61"></div>
+      <div class="box" id="b62"></div>
+      <div class="box" id="b63"></div>
+      <div class="box" id="b64"></div>
+      <div class="box" id="b65"></div>
+      <div class="box" id="b66"></div>
+      <div class="box" id="b67"></div>
+      <div class="box" id="b68"></div>
+      <div class="box" id="b69"></div>
+      <div class="box" id="b70"></div>
+      <div class="box" id="b60"></div>
+      <div class="box" id="b59"></div>
+      <div class="box" id="b58"></div>
+      <div class="box" id="b57"></div>
+      <div class="box" id="b56"></div>
+      <div class="box" id="b55"></div>
+      <div class="box" id="b54"></div>
+      <div class="box" id="b53"></div>
+      <div class="box" id="b52"></div>
+      <div class="box" id="b51"></div>
+      <div class="box" id="b41"></div>
+      <div class="box" id="b42"></div>
+      <div class="box" id="b43"></div>
+      <div class="box" id="b44"></div>
+      <div class="box" id="b45"></div>
+      <div class="box" id="b46"></div>
+      <div class="box" id="b47"></div>
+      <div class="box" id="b48"></div>
+      <div class="box" id="b49"></div>
+      <div class="box" id="b50"></div>
+      <div class="box" id="b40"></div>
+      <div class="box" id="b39"></div>
+      <div class="box" id="b38"></div>
+      <div class="box" id="b37"></div>
+      <div class="box" id="b36"></div>
+      <div class="box" id="b35"></div>
+      <div class="box" id="b34"></div>
+      <div class="box" id="b33"></div>
+      <div class="box" id="b32"></div>
+      <div class="box" id="b31"></div>
+      <div class="box" id="b21"></div>
+      <div class="box" id="b22"></div>
+      <div class="box" id="b23"></div>
+      <div class="box" id="b24"></div>
+      <div class="box" id="b25"></div>
+      <div class="box" id="b26"></div>
+      <div class="box" id="b27"></div>
+      <div class="box" id="b28"></div>
+      <div class="box" id="b29"></div>
+      <div class="box" id="b30"></div>
+      <div class="box" id="b20"></div>
+      <div class="box" id="b19"></div>
+      <div class="box" id="b18"></div>
+      <div class="box" id="b17"></div>
+      <div class="box" id="b16"></div>
+      <div class="box" id="b15"></div>
+      <div class="box" id="b14"></div>
+      <div class="box" id="b13"></div>
+      <div class="box" id="b12"></div>
+      <div class="box" id="b11"></div>
+      <div class="box" id="b01">
+        <p id="p1"></p>
+        <p id="p2"></p>
+      </div>
+      <div class="box" id="b02"></div>
+      <div class="box" id="b03"></div>
+      <div class="box" id="b04"></div>
+      <div class="box" id="b05"></div>
+      <div class="box" id="b06"></div>
+      <div class="box" id="b07"></div>
+      <div class="box" id="b08"></div>
+      <div class="box" id="b09"></div>
+      <div class="box" id="b10"></div>
+    </div>
+
+    <!-- <img src="snake ladder.png" alt="" /> -->
+  </body>
+
+  <script>
+    const snakes = {
+      16: 6,
+      47: 26,
+      49: 11,
+      56: 53,
+      62: 19,
+      64: 60,
+      87: 24,
+      93: 73,
+      95: 75,
+      98: 78,
+    }
+    const ladders = {
+      1: 38,
+      4: 14,
+      9: 31,
+      21: 42,
+      28: 84,
+      36: 44,
+      51: 67,
+      71: 91,
+      80: 100,
+    }
+
+    let turn = 1
+    let player1Position = 0
+    let player2Position = 0
+
+    function play(player, currentPosition, verticalCorrection, diceValue) {
+      let sum
+      if (currentPosition == 'player1Position') {
+        player1Position = player1Position + diceValue
+
+        if (player1Position > 100) {
+          player1Position = player1Position - diceValue
+          // sum = player1Position
+        }
+
+        if (player1Position in snakes) {
+          player1Position = snakes[player1Position]
+        } else if (player1Position in ladders) {
+          player1Position = ladders[player1Position]
+        }
+
+        sum = player1Position
+      }
+
+      if (currentPosition == 'player2Position') {
+        player2Position = player2Position + diceValue
+
+        if (player2Position > 100) {
+          player2Position = player2Position - diceValue
+          // sum = player1Position
+        }
+
+        if (player2Position in snakes) {
+          player2Position = snakes[player2Position]
+        } else if (player2Position in ladders) {
+          player2Position = ladders[player2Position]
+        }
+
+        sum = player2Position
+      }
+
+      document.getElementById(`${player}`).style.transition = `linear all .5s`
+
+      if (sum < 10) {
+        document.getElementById(`${player}`).style.left = `${(sum - 1) * 62}px`
+        document.getElementById(`${player}`).style.top = `${
+          -0 * 62 - verticalCorrection
+        }px`
+      } else if (sum == 100) {
+        if (player == 'p1') {
+          alert('Red Won !!')
+        } else if (player == 'p2') {
+          alert('Yellow Won !!')
+        }
+        location.reload()
+      } else {
+        numarr = Array.from(String(sum))
+        n1 = eval(numarr.shift())
+        n2 = eval(numarr.pop())
+
+        if (n1 % 2 != 0) {
+          if (n2 == 0) {
+            document.getElementById(`${player}`).style.left = `${9 * 62}px`
+            document.getElementById(`${player}`).style.top = `${
+              (-n1 + 1) * 62 - verticalCorrection
+            }px`
+          } else {
+            document.getElementById(`${player}`).style.left = `${
+              (9 - (n2 - 1)) * 62
+            }px`
+            document.getElementById(`${player}`).style.top = `${
+              -n1 * 62 - verticalCorrection
+            }px`
+          }
+        } else if (n1 % 2 == 0) {
+          if (n2 == 0) {
+            document.getElementById(`${player}`).style.left = `${0 * 62}px`
+            document.getElementById(`${player}`).style.top = `${
+              (-n1 + 1) * 62 - verticalCorrection
+            }px`
+          } else {
+            document.getElementById(`${player}`).style.left = `${
+              (n2 - 1) * 62
+            }px`
+            document.getElementById(`${player}`).style.top = `${
+              -n1 * 62 - verticalCorrection
+            }px`
+          }
+        }
+      }
+    }
+
+    document.getElementById('diceBtn').addEventListener('click', function () {
+      num = Math.floor(Math.random() * (6 - 1 + 1) + 1)
+      document.getElementById('dice').innerText = num
+
+      if (turn % 2 != 0) {
+        document.getElementById('turn').innerText = "Yellow's Turn : "
+        play('p1', 'player1Position', 0, num)
+      } else if (turn % 2 == 0) {
+        document.getElementById('turn').innerText = "Red's Turn : "
+
+        play('p2', 'player2Position', 55, num)
+      }
+
+      turn = turn + 1
+    })
+  </script>
+</html>
