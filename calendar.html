@@ -57,6 +57,11 @@
           cursor: pointer;
           background-color: #fff;
           transition: background-color 0.3s;
+
+          &.selected {
+            background-color: #a855f7;
+            color: #fff;
+          }
         }
 
         & td:hover {
@@ -108,6 +113,7 @@
     </style>
   </head>
   <body>
+    <!-- HTML -->
     <div id="datePicker" class="date-picker">
       <input
         type="text"
@@ -121,54 +127,57 @@
       </div>
     </div>
 
+    <!-- JS -->
     <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        const dateInput = document.getElementById('dateInput')
-        const calendar = document.getElementById('calendar')
+      const dateInput = document.getElementById('dateInput')
+      const calendar = document.getElementById('calendar')
 
-        dateInput.addEventListener('click', function () {
-          calendar.style.display = 'block'
-          generateCalendar(new Date())
-        })
-
-        function generateCalendar(date) {
-          const monthDays = new Date(
-            date.getFullYear(),
-            date.getMonth() + 1,
-            0
-          ).getDate()
-          const startDay = new Date(
-            date.getFullYear(),
-            date.getMonth(),
-            1
-          ).getDay()
-
-          let calendarHTML =
-            '<table><tr><th>Su</th><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th></tr><tr>'
-          for (let i = 0; i < startDay; i++) {
-            calendarHTML += '<td></td>'
-          }
-
-          for (let day = 1; day <= monthDays; day++) {
-            if ((day + startDay - 1) % 7 === 0) {
-              calendarHTML += '</tr><tr>'
-            }
-            calendarHTML += `<td class="calendar-day">${day}</td>`
-          }
-
-          calendarHTML += '</tr></table>'
-          calendar.innerHTML = calendarHTML
-
-          document.querySelectorAll('.calendar-day').forEach((day) => {
-            day.addEventListener('click', function () {
-              dateInput.value = `${date.getFullYear()}-${String(
-                date.getMonth() + 1
-              ).padStart(2, '0')}-${String(day.textContent).padStart(2, '0')}`
-              calendar.style.display = 'none'
-            })
-          })
-        }
+      // Show the calendar when the input is clicked
+      dateInput.addEventListener('click', function () {
+        calendar.style.display = 'block'
+        generateCalendar(new Date())
       })
+
+      // TODO test the function by practicing with the date object
+
+      function generateCalendar(date) {
+        const monthDays = new Date(
+          date.getFullYear(),
+          date.getMonth() + 1,
+          0
+        ).getDate()
+        const startDay = new Date(
+          date.getFullYear(),
+          date.getMonth(),
+          1
+        ).getDay()
+
+        let calendarHTML =
+          '<table><tr><th>Su</th><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th></tr><tr>'
+        for (let i = 0; i < startDay; i++) {
+          calendarHTML += '<td></td>'
+        }
+
+        for (let day = 1; day <= monthDays; day++) {
+          if ((day + startDay - 1) % 7 === 0) {
+            calendarHTML += '</tr><tr>'
+          }
+          calendarHTML += `<td class="calendar-day">${day}</td>`
+        }
+
+        calendarHTML += '</tr></table>'
+        calendar.innerHTML = calendarHTML
+
+        document.querySelectorAll('.calendar-day').forEach((day) => {
+          day.addEventListener('click', function () {
+            // Set the date input value
+            dateInput.value = `${date.getFullYear()}-${String(
+              date.getMonth() + 1
+            ).padStart(2, '0')}-${String(day.textContent).padStart(2, '0')}`
+            calendar.style.display = 'none'
+          })
+        })
+      }
     </script>
   </body>
 </html>
