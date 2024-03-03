@@ -132,6 +132,9 @@
       const dateInput = document.getElementById('dateInput')
       const calendar = document.getElementById('calendar')
 
+      // Create a variable called selectedDay and assign the current day number to it
+      let selectedDay = new Date().getDate()
+
       // Show the calendar when the input is clicked
       dateInput.addEventListener('click', function () {
         calendar.style.display = 'block'
@@ -171,8 +174,12 @@
             calendarHTML += '</tr><tr>'
           }
 
-          // Add the day to the calendar
-          calendarHTML += `<td class="calendar-day">${day}</td>`
+          // Highlight the selected day and add each day to the calendar
+          if (day === selectedDay) {
+            calendarHTML += `<td class="calendar-day selected">${day}</td>`
+          } else {
+            calendarHTML += `<td class="calendar-day">${day}</td>`
+          }
         }
 
         // Close the table and set the calendar HTML
@@ -188,6 +195,9 @@
             ).padStart(2, '0')}-${String(day.textContent).padStart(2, '0')}`
 
             // TIP: padStart will add leading zeros to the month and day if they are less than 10
+
+            // Update the selected day
+            selectedDay = parseInt(day.textContent)
 
             // Hide the calendar
             calendar.style.display = 'none'
