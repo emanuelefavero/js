@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="fetchButton">Fetch data</button>
+    <h2 id="output"></h2>
+
+    <script>
+      // THROTTLE
+      // Throttle is a technique in which, no matter how many times the user clicks the button, the data will be fetched only once in a certain time frame
+
+      const fetchButton = document.getElementById('fetchButton')
+      const output = document.getElementById('output')
+      let counter = 1
+
+      let throttle = true
+      fetchButton.addEventListener('click', () => {
+        if (throttle) {
+          output.textContent = 'Fetched data counter: ' + counter++
+
+          throttle = false
+          setTimeout(() => {
+            throttle = true
+          }, 1000)
+        }
+      })
+    </script>
+  </body>
+</html>
