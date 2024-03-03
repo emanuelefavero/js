@@ -204,6 +204,15 @@
           })
         })
       }
+
+      // Hide the calendar when the user clicks outside of it
+      document.addEventListener('click', function (event) {
+        // Check if the click is outside of both the calendar and the date input
+        if (!calendar.contains(event.target) && event.target !== dateInput) {
+          // Hide the calendar if the click is outside
+          calendar.style.display = 'none'
+        }
+      })
     </script>
   </body>
 </html>
