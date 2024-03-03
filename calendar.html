@@ -141,39 +141,55 @@
       // TODO test the function by practicing with the date object
 
       function generateCalendar(date) {
+        // Get the number of days in the month by creating a new date object with the next month's first day and subtracting 1 (this will return the last day of the current month which is the number of days in the month)
         const monthDays = new Date(
           date.getFullYear(),
           date.getMonth() + 1,
           0
         ).getDate()
+
+        // Get the day of the week the first day of the month falls on. This will also be used to determine the number of empty cells to add to the beginning of the calendar. getDay() will return a number between 0 and 6, where 0 is Sunday and 6 is Saturday.
         const startDay = new Date(
           date.getFullYear(),
           date.getMonth(),
           1
         ).getDay()
 
+        // Create the calendar HTML
         let calendarHTML =
           '<table><tr><th>Su</th><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th></tr><tr>'
+
+        // Add empty cells to the beginning of the calendar
         for (let i = 0; i < startDay; i++) {
           calendarHTML += '<td></td>'
         }
 
+        // Add the days of the month to the calendar
         for (let day = 1; day <= monthDays; day++) {
+          // Start a new row when the day is Sunday
           if ((day + startDay - 1) % 7 === 0) {
             calendarHTML += '</tr><tr>'
           }
+
+          // Add the day to the calendar
           calendarHTML += `<td class="calendar-day">${day}</td>`
         }
 
+        // Close the table and set the calendar HTML
         calendarHTML += '</tr></table>'
         calendar.innerHTML = calendarHTML
 
+        // Add an event listener to each day
         document.querySelectorAll('.calendar-day').forEach((day) => {
           day.addEventListener('click', function () {
-            // Set the date input value
+            // Set the date input value as the selected date
             dateInput.value = `${date.getFullYear()}-${String(
               date.getMonth() + 1
             ).padStart(2, '0')}-${String(day.textContent).padStart(2, '0')}`
+
+            // TIP: padStart will add leading zeros to the month and day if they are less than 10
+
+            // Hide the calendar
             calendar.style.display = 'none'
           })
         })
