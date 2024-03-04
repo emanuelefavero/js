@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      .clock {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        border: 8px solid black;
+        border-radius: 50%;
+        margin: 50px auto;
+        background: rgb(240, 242, 248);
+      }
+
+      .hand {
+        position: absolute;
+        bottom: 50%;
+        left: 50%;
+        transform-origin: bottom;
+        transform: translateX(-50%);
+        background: black;
+      }
+
+      .hour {
+        width: 6px;
+        height: 50px;
+        z-index: 1;
+      }
+
+      .minute {
+        width: 4px;
+        height: 70px;
+        z-index: 2;
+      }
+
+      .second {
+        width: 2px;
+        height: 90px;
+        background-color: rgb(214, 24, 72);
+        z-index: 3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="clock">
+      <!-- HANDS -->
+      <div class="hand hour" id="hour"></div>
+      <div class="hand minute" id="minute"></div>
+      <div class="hand second" id="second"></div>
+    </div>
+
+    <script>
+      function updateClock() {
+        const now = new Date()
+        const second = now.getSeconds()
+        const minute = now.getMinutes()
+        const hour = now.getHours()
+
+        // ? Determine the degree of rotation for each hand
+        const secondDegree = (second / 60) * 360 + 90
+        const minuteDegree = (minute / 60) * 360 + (second / 60) * 6 + 90
+        const hourDegree = (hour / 12) * 360 + (minute / 60) * 30 + 90
+
+        const secondHand = document.getElementById('second')
+        const minuteHand = document.getElementById('minute')
+        const hourHand = document.getElementById('hour')
+
+        secondHand.style.transform = `rotate(${secondDegree}deg)`
+        minuteHand.style.transform = `rotate(${minuteDegree}deg)`
+        hourHand.style.transform = `rotate(${hourDegree}deg)`
+      }
+
+      setInterval(updateClock, 1000)
+
+      /*
+        TIP: How to calculate the degree of rotation for each hand
+        ? The second hand moves 360 degrees in 60 seconds
+        ? The minute hand moves 360 degrees in 60 minutes, we also add the degree of the second hand
+        ? The hour hand moves 360 degrees in 12 hours, we also add the degree of the minute hand
+        ? We add 90 degrees to all hands to make them point to 12 o'clock
+      */
+    </script>
+  </body>
+</html>
