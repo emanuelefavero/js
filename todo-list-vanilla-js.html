@@ -44,9 +44,9 @@
       let addButton = document.querySelector('#addButton')
 
       // ADD ITEM
-      let addItem = (input) => {
+      let addItem = (inputValue) => {
         let listItem = document.createElement('li')
-        listItem.innerHTML = `${input} <button id="removeButton">X</button>`
+        listItem.innerHTML = `${inputValue} <button id="removeButton">X</button>`
 
         // Click item event
         listItem.addEventListener('click', function () {
