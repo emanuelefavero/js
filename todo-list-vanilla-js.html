@@ -53,10 +53,10 @@
           this.style.color = 'green'
         })
 
-        // Remove item event
+        // Add the remove item click event
         listItem
           .querySelector('#removeButton')
-          .addEventListener('click', function () {
+          .addEventListener('click', () => {
             listItem.remove()
           })
 
@@ -65,7 +65,7 @@
       }
 
       // Button event
-      addButton.addEventListener('click', function () {
+      addButton.addEventListener('click', () => {
         addItem(input.value)
         input.value = ''
       })
