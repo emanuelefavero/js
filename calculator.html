@@ -86,7 +86,7 @@
   </head>
   <body>
     <div class="calculator">
-      <div class="display">0</div>
+      <div class="display" id="display">0</div>
       <div class="buttons">
         <button onclick="clearDisplay()">C</button>
         <button onclick="changeSign()">+/-</button>
@@ -109,5 +109,23 @@
         <button onclick="calculate()" class="operator">=</button>
       </div>
     </div>
+
+    <script>
+      // TODO shrink display text size when there are more than 6 numbers and so on (use display.innerText.length)
+
+      const display = document.getElementById('display')
+
+      function appendNumber(number) {
+        if (display.innerText === '0') {
+          display.innerText = ''
+        }
+
+        display.innerText += number
+      }
+
+      function clearDisplay() {
+        display.innerText = '0'
+      }
+    </script>
   </body>
 </html>
