@@ -112,13 +112,13 @@
 
     <script>
       // TODO shrink display text size when there are more than 6 numbers and so on (use display.innerText.length)
-      // TODO change the background color of the operator when it's selected
 
       const display = document.getElementById('display')
       const operatorButtons = document.querySelectorAll('.operator')
       let firstValue = 0
       let secondValue = 0
       let operator = ''
+      let operatorSelected = false
 
       function appendNumber(number) {
         if (display.innerText === 'Error') {
@@ -129,6 +129,12 @@
           display.innerText = ''
         }
 
+        // Clear display if an operator is selected
+        if (operatorSelected) {
+          display.innerText = ''
+          operatorSelected = false // reset flag after clearing
+        }
+
         display.innerText += number
 
         resetOperatorColor()
@@ -137,7 +143,8 @@
       function selectOperator(selectedOperator) {
         firstValue = parseFloat(display.innerText)
         operator = selectedOperator
-        display.innerText = '0'
+        // display.innerText = '0'
+        operatorSelected = true
 
         changeOperatorColor()
       }
