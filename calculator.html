@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Inter',
+          'SF Pro', 'San Francisco Pro', 'Helvetica Neue', Helvetica, 'Segoe UI',
+          Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+        background-color: black;
+        color: white;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .calculator {
+        padding: 1rem;
+        width: 250px;
+        overflow-x: hidden;
+      }
+
+      .display {
+        padding: 0.2rem 0.2rem;
+        margin-bottom: 0.4rem;
+        text-align: right;
+        font-size: 4rem;
+        font-weight: 200;
+      }
+
+      .buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.5rem;
+
+        & button {
+          background-color: #ede9fe;
+          width: 50px;
+          height: 50px;
+          font-weight: bold;
+          border: none;
+          border-radius: 50%;
+          text-align: center;
+          font-size: 1.5rem;
+          cursor: pointer;
+          transition: 0.2s;
+
+          &:hover {
+            opacity: 0.9;
+          }
+
+          &:active {
+            transform: scale(0.95);
+          }
+
+          &.operator {
+            background-color: #d946ef;
+            color: #fff;
+          }
+
+          &.number {
+            background-color: #7c3aed;
+            color: #fff;
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calculator">
+      <div class="display">0</div>
+      <div class="buttons">
+        <button onclick="clearDisplay()">C</button>
+        <button onclick="changeSign()">+/-</button>
+        <button onclick="percentage()">%</button>
+        <button onclick="selectOperator('/')" class="operator">/</button>
+        <button onclick="appendNumber('7')" class="number">7</button>
+        <button onclick="appendNumber('8')" class="number">8</button>
+        <button onclick="appendNumber('9')" class="number">9</button>
+        <button onclick="selectOperator('x')" class="operator">x</button>
+        <button onclick="appendNumber('4')" class="number">4</button>
+        <button onclick="appendNumber('5')" class="number">5</button>
+        <button onclick="appendNumber('6')" class="number">6</button>
+        <button onclick="selectOperator('-')" class="operator">-</button>
+        <button onclick="appendNumber('1')" class="number">1</button>
+        <button onclick="appendNumber('2')" class="number">2</button>
+        <button onclick="appendNumber('3')" class="number">3</button>
+        <button onclick="selectOperator('+')" class="operator">+</button>
+        <button onclick="appendNumber('0')" class="number">0</button>
+        <button onclick="appendDot()" class="number">.</button>
+        <button onclick="calculate()" class="operator">=</button>
+      </div>
+    </div>
+  </body>
+</html>
