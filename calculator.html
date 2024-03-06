@@ -140,6 +140,7 @@
         display.innerText += number
 
         resetOperatorColor()
+        adjustDisplaySize()
       }
 
       // * SELECT OPERATOR
@@ -180,11 +181,13 @@
         operator = ''
 
         changeOperatorColor()
+        adjustDisplaySize()
       }
 
       // OTHER FUNCTIONS
       function percentage() {
         display.innerText = parseFloat(display.innerText) / 100
+        adjustDisplaySize()
       }
 
       function changeSign() {
@@ -202,6 +205,7 @@
         display.innerText = '0'
 
         resetOperatorColor()
+        adjustDisplaySize()
       }
 
       // * OPERATOR BUTTONS COLORS
@@ -219,6 +223,15 @@
         operatorButtons.forEach((button) => {
           button.style.backgroundColor = '#d946ef'
         })
+      }
+
+      // * ADJUST DISPLAY SIZE (When there are more numbers)
+      function adjustDisplaySize() {
+        if (display.innerText.length > 6) {
+          display.style.fontSize = '2rem'
+        } else {
+          display.style.fontSize = '4rem'
+        }
       }
     </script>
   </body>
