@@ -71,6 +71,14 @@
           &.number {
             background-color: #7c3aed;
             color: #fff;
+
+            &.zero {
+              grid-column: span 2;
+              width: 100%;
+              border-radius: 50px;
+              text-align: left;
+              padding-left: 1.2rem;
+            }
           }
         }
       }
@@ -96,7 +104,7 @@
         <button onclick="appendNumber('2')" class="number">2</button>
         <button onclick="appendNumber('3')" class="number">3</button>
         <button onclick="selectOperator('+')" class="operator">+</button>
-        <button onclick="appendNumber('0')" class="number">0</button>
+        <button onclick="appendNumber('0')" class="number zero">0</button>
         <button onclick="appendDot()" class="number">.</button>
         <button onclick="calculate()" class="operator">=</button>
       </div>
