@@ -165,6 +165,12 @@
         display.innerText = -value
       }
 
+      function appendDot() {
+        if (!display.innerText.includes('.')) {
+          display.innerText += '.'
+        }
+      }
+
       function clearDisplay() {
         display.innerText = '0'
       }
