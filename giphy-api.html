@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form onsubmit="search(event)">
+      <input type="search" />
+      <button type="submit">Search</button>
+    </form>
+
+    <div id="output"></div>
+
+    <script>
+      const input = document.querySelector('input[type="search"]')
+      const output = document.querySelector('#output')
+
+      // Search github users
+      async function search(event) {
+        event.preventDefault()
+
+        const query = input.value
+        const apiKey = 'frH3FGFrzZmYAmp3HssW0LhkW015UaHk'
+        const url = `https://api.giphy.com/v1/gifs/search?q=${query}&api_key=${apiKey}&limit=16`
+
+        const response = await fetch(url)
+
+        const data = await response.json()
+
+        output.innerHTML = data.data
+          .map((item) => {
+            return `
+              <img src="${item.images.original.url}" alt="${item.title}" />
+            `
+          })
+          .join('')
+      }
+    </script>
+  </body>
+</html>
