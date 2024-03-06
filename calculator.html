@@ -113,6 +113,7 @@
     <script>
       // TODO shrink display text size when there are more than 6 numbers and so on (use display.innerText.length)
 
+      // * Variables
       const display = document.getElementById('display')
       const operatorButtons = document.querySelectorAll('.operator')
       let firstValue = 0
@@ -120,6 +121,7 @@
       let operator = ''
       let operatorSelected = false
 
+      // * APPEND NUMBER
       function appendNumber(number) {
         if (display.innerText === 'Error') {
           display.innerText = '0'
@@ -140,15 +142,16 @@
         resetOperatorColor()
       }
 
+      // * SELECT OPERATOR
       function selectOperator(selectedOperator) {
         firstValue = parseFloat(display.innerText)
         operator = selectedOperator
-        // display.innerText = '0'
         operatorSelected = true
 
         changeOperatorColor()
       }
 
+      // * CALCULATE
       function calculate() {
         secondValue = parseFloat(display.innerText)
 
@@ -179,6 +182,7 @@
         changeOperatorColor()
       }
 
+      // OTHER FUNCTIONS
       function percentage() {
         display.innerText = parseFloat(display.innerText) / 100
       }
@@ -200,6 +204,7 @@
         resetOperatorColor()
       }
 
+      // * OPERATOR BUTTONS COLORS
       function changeOperatorColor() {
         operatorButtons.forEach((button) => {
           if (button.innerText === operator) {
