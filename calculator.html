@@ -120,7 +120,7 @@
       let operator = ''
 
       function appendNumber(number) {
-        if (display.innerText === '0') {
+        if (display.innerText === '0' || operator !== '') {
           display.innerText = ''
         }
 
@@ -130,7 +130,7 @@
       function selectOperator(selectedOperator) {
         firstValue = parseFloat(display.innerText)
         operator = selectedOperator
-        display.innerText = '0'
+        // display.innerText = '0'
       }
 
       function calculate() {
