@@ -98,7 +98,12 @@
   <body>
     <form onsubmit="search(event)">
       <label for="searchImages">Search</label>
-      <input type="search" placeholder="Search images" id="searchImages" />
+      <input
+        type="search"
+        placeholder="Search images"
+        id="searchImages"
+        required
+      />
       <button type="submit">Search</button>
     </form>
 
@@ -108,26 +113,39 @@
       const input = document.querySelector('input[type="search"]')
       const output = document.querySelector('#output')
 
-      // Search github users
+      // * Search for images with the Giphy API and display them
       async function search(event) {
         event.preventDefault()
+        if (!input.value) return
 
         const query = input.value
         const apiKey = 'frH3FGFrzZmYAmp3HssW0LhkW015UaHk'
         const url = `https://api.giphy.com/v1/gifs/search?q=${query}&api_key=${apiKey}&limit=16`
 
-        const response = await fetch(url)
+        try {
+          const response = await fetch(url)
 
-        const data = await response.json()
+          const data = await response.json()
 
-        output.innerHTML = data.data
-          .map((item) => {
-            return `
+          // * Display the images
+          output.innerHTML = data.data
+            .map((item) => {
+              return `
               <img src="${item.images.original.url}" alt="${item.title}" />
             `
-          })
-          .join('')
+            })
+            .join('')
+        } catch (error) {
+          console.error(error)
+        }
       }
+
+      // * Search when the user presses the enter key
+      input.addEventListener('keyup', (event) => {
+        if (event.key === 'Enter') {
+          search(event)
+        }
+      })
     </script>
   </body>
 </html>
