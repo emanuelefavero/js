@@ -121,6 +121,10 @@
       let operator = ''
 
       function appendNumber(number) {
+        if (display.innerText === 'Error') {
+          display.innerText = '0'
+        }
+
         if (display.innerText === '0') {
           display.innerText = ''
         }
@@ -152,6 +156,11 @@
             display.innerText = firstValue * secondValue
             break
           case '/':
+            if (secondValue === 0) {
+              display.innerText = 'Error'
+              break
+            }
+
             display.innerText = firstValue / secondValue
             break
         }
