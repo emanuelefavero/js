@@ -115,22 +115,27 @@
       // TODO change the background color of the operator when it's selected
 
       const display = document.getElementById('display')
+      const operatorButtons = document.querySelectorAll('.operator')
       let firstValue = 0
       let secondValue = 0
       let operator = ''
 
       function appendNumber(number) {
-        if (display.innerText === '0' || operator !== '') {
+        if (display.innerText === '0') {
           display.innerText = ''
         }
 
         display.innerText += number
+
+        resetOperatorColor()
       }
 
       function selectOperator(selectedOperator) {
         firstValue = parseFloat(display.innerText)
         operator = selectedOperator
-        // display.innerText = '0'
+        display.innerText = '0'
+
+        changeOperatorColor()
       }
 
       function calculate() {
@@ -154,6 +159,8 @@
         firstValue = 0
         secondValue = 0
         operator = ''
+
+        changeOperatorColor()
       }
 
       function percentage() {
@@ -173,6 +180,24 @@
 
       function clearDisplay() {
         display.innerText = '0'
+
+        resetOperatorColor()
+      }
+
+      function changeOperatorColor() {
+        operatorButtons.forEach((button) => {
+          if (button.innerText === operator) {
+            button.style.backgroundColor = '#a21caf'
+          } else {
+            button.style.backgroundColor = '#d946ef'
+          }
+        })
+      }
+
+      function resetOperatorColor() {
+        operatorButtons.forEach((button) => {
+          button.style.backgroundColor = '#d946ef'
+        })
       }
     </script>
   </body>
