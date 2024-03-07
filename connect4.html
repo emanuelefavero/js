@@ -25,6 +25,24 @@
         display: flex;
         flex-wrap: wrap;
       }
+
+      .tile {
+        height: 70px;
+        width: 70px;
+        margin: 5px;
+
+        background-color: white;
+        border-radius: 50%;
+        border: 5px solid navy;
+      }
+
+      .red-piece {
+        background-color: red;
+      }
+
+      .yellow-piece {
+        background-color: yellow;
+      }
     </style>
   </head>
   <body>
@@ -32,6 +50,41 @@
     <h2 id="winner"></h2>
     <div id="board"></div>
 
-    <script></script>
+    <script>
+      let playerRed = 'R'
+      let playerYellow = 'Y'
+      let currentPlayer = playerRed
+
+      let gameOver = false
+      let board
+
+      let rows = 6
+      let columns = 7
+
+      window.onload = function () {
+        setGame()
+      }
+
+      // Populate the board with tiles
+      function setGame() {
+        board = []
+
+        for (let r = 0; r < rows; r++) {
+          let row = []
+          for (let c = 0; c < columns; c++) {
+            // JS
+            row.push(' ')
+
+            // HTML
+            let tile = document.createElement('div')
+            tile.id = r + '-' + c
+            tile.classList.add('tile')
+            document.getElementById('board').appendChild(tile)
+          }
+
+          board.push(row)
+        }
+      }
+    </script>
   </body>
 </html>
