@@ -23,79 +23,92 @@
         justify-content: center;
       }
 
+      h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-top: 2rem;
+        margin-bottom: 3rem;
+      }
+
       form {
+        user-select: none;
         max-width: 1000px;
         padding: 0 4rem;
-        margin-top: 6rem;
         margin-bottom: 1rem;
-      }
 
-      label {
-        font-size: 1.2rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-      }
-
-      input[type='search'] {
-        padding: 0.7rem;
-        font-size: 1rem;
-        font-weight: 500;
-        margin-top: 0.4rem;
-        margin-bottom: 1rem;
-        width: 100%;
-        border-radius: 0.4rem;
-        border: 2px solid black;
-        box-shadow: 4px 4px 0 0px black;
-
-        &:focus {
-          outline: none;
-          border-color: #a21caf;
+        & label {
+          font-size: 1.2rem;
+          font-weight: 600;
+          margin-bottom: 1rem;
         }
-      }
 
-      button {
-        width: 100%;
-        padding: 0.5rem 3rem;
-        border-radius: 2rem;
-        background-color: #a21caf;
-        border: 2px solid black;
-        box-shadow: 4px 4px 0 0px black;
-        font-size: 1rem;
-        color: white;
-        cursor: pointer;
-        transition: background-color 0.2s, transform 0.2s;
+        & input[type='search'] {
+          padding: 0.7rem;
+          font-size: 1rem;
+          font-weight: 500;
+          margin-top: 0.4rem;
+          margin-bottom: 1rem;
+          width: 100%;
+          border-radius: 0.4rem;
+          border: 2px solid black;
+          box-shadow: 4px 4px 0 0px black;
 
-        &:focus {
-          outline: none;
-          border-color: #e879f9;
+          &:focus {
+            outline: none;
+            border-color: #a21caf;
+          }
         }
-      }
 
-      button:hover {
-        background-color: #c026d3;
-      }
+        & button {
+          width: 100%;
+          padding: 0.5rem 3rem;
+          border-radius: 2rem;
+          background-color: #a21caf;
+          border: 2px solid black;
+          box-shadow: 4px 4px 0 0px black;
+          font-size: 1rem;
+          color: white;
+          cursor: pointer;
+          transition: background-color 0.2s, transform 0.2s;
 
-      button:active {
-        transform: scale(0.98);
+          &:focus {
+            outline: none;
+            border-color: #e879f9;
+          }
+
+          &:hover {
+            background-color: #c026d3;
+          }
+
+          &:active {
+            transform: scale(0.98);
+          }
+        }
       }
 
       #output {
         max-width: 1600px;
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: auto auto auto auto; /* ? */
         gap: 1rem;
         padding: 2rem;
+
+        & img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 0.4rem;
+        }
       }
 
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 0.4rem;
-      }
+      /* ? auto auto auto auto performs better that repeat(4, 1fr) */
     </style>
   </head>
   <body>
+    <!-- THIS APP ALLOWS TO SEARCH IMAGES WITH THE GIPHY API -->
+
+    <h1>Giphy API</h1>
+
     <form onsubmit="search(event)">
       <label for="searchImages">Search</label>
       <input
@@ -120,7 +133,9 @@
 
         const query = input.value
         const apiKey = 'frH3FGFrzZmYAmp3HssW0LhkW015UaHk'
-        const url = `https://api.giphy.com/v1/gifs/search?q=${query}&api_key=${apiKey}&limit=16`
+        const url = `https://api.giphy.com/v1/gifs/search?q=${query}&api_key=${apiKey}&limit=16&bundle=clips_grid_picker`
+
+        // TIP: bundle=clips_grid_picker returns images better suited for a grid
 
         try {
           const response = await fetch(url)
