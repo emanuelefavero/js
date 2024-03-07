@@ -60,6 +60,7 @@
 
       let gameOver = false
       let board
+      let currentColumns
 
       let rows = 6
       let columns = 7
@@ -71,6 +72,7 @@
       // Populate the board with tiles
       function setGame() {
         board = []
+        currentColumns = [5, 5, 5, 5, 5, 5, 5]
 
         for (let r = 0; r < rows; r++) {
           let row = []
@@ -96,6 +98,31 @@
       // Set a piece on the board
       function setPiece() {
         if (gameOver) return
+
+        // get coordinates of the clicked tile
+        let coords = this.id.split('-') // '0-0' -> ['0', '0']
+        let r = parseInt(coords[0])
+        let c = parseInt(coords[1])
+
+        r = currentColumns[c]
+        if (r < 0) return
+
+        board[r][c] = currentPlayer
+        let tile = document.getElementById(r + '-' + c)
+
+        if (currentPlayer === playerRed) {
+          tile.classList.add('red-piece')
+          currentPlayer = playerYellow
+        } else {
+          tile.classList.add('yellow-piece')
+          currentPlayer = playerRed
+        }
+
+        // decrease the row index of the current column so the next piece will be set on the above row
+        currentColumns[c]--
+
+        // Check if there is a winner
+        checkWinner()
       }
     </script>
   </body>
