@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nested Checkboxes</title>
+
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+
+      label,
+      input[type='checkbox'] {
+        user-select: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Nested Checkboxes</h1>
+
+    <!-- PARENT -->
+    <input type="checkbox" id="parentCheckbox" onchange="checkAllChildren()" />
+    <label for="parentCheckbox">Parent</label>
+
+    <!-- CHILDREN -->
+    <div style="margin-left: 1rem; user-select: none">
+      <input
+        type="checkbox"
+        class="child"
+        id="child1"
+        onchange="checkParentIfAllChecked()"
+      />
+      <label for="child1">Child 1</label>
+      <input
+        type="checkbox"
+        class="child"
+        id="child2"
+        onchange="checkParentIfAllChecked()"
+      />
+      <label for="child2">Child 2</label>
+      <input
+        type="checkbox"
+        class="child"
+        id="child3"
+        onchange="checkParentIfAllChecked()"
+      />
+      <label for="child3">Child 3</label>
+    </div>
+
+    <script>
+      const children = document.querySelectorAll('.child')
+      const parent = document.getElementById('parentCheckbox')
+
+      // Make the parent checkbox checked if all children are checked
+      function checkParentIfAllChecked() {
+        let allChecked = true
+        children.forEach((child) => {
+          if (!child.checked) allChecked = false
+        })
+
+        parent.checked = allChecked
+      }
+
+      // Make all children checked if the parent checkbox is checked
+      function checkAllChildren() {
+        children.forEach((child) => {
+          child.checked = parent.checked
+        })
+      }
+    </script>
+  </body>
+</html>
