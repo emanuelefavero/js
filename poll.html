@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Poll</h1>
+
+    <p>Pick your favorite fruit:</p>
+    <form>
+      <input type="radio" name="favoriteFruit" id="answer1" value="Mango" />
+      <label for="answer1">Mango</label>
+      <input type="radio" name="favoriteFruit" id="answer2" value="Banana" />
+      <label for="answer2">Banana</label>
+      <input type="radio" name="favoriteFruit" id="answer3" value="Kiwi" />
+      <label for="answer3">Kiwi</label>
+      <button type="submit">Submit</button>
+    </form>
+
+    <div id="output"></div>
+
+    <script>
+      const form = document.querySelector('form')
+      const answer1 = document.getElementById('answer1')
+      const answer2 = document.getElementById('answer2')
+      const answer3 = document.getElementById('answer3')
+      const output = document.getElementById('output')
+
+      let totalAnswersCounter = 0
+      let answer1Counter = 0
+      let answer2Counter = 0
+      let answer3Counter = 0
+
+      form.addEventListener('submit', submitPoll)
+
+      function submitPoll() {
+        event.preventDefault()
+
+        totalAnswersCounter++
+
+        if (answer1.checked) answer1Counter++
+        else if (answer2.checked) answer2Counter++
+        else if (answer3.checked) answer3Counter++
+        else return // do nothing if no answer is checked
+
+        const answer1Percentage = (answer1Counter / totalAnswersCounter) * 100
+        const answer2Percentage = (answer2Counter / totalAnswersCounter) * 100
+        const answer3Percentage = (answer3Counter / totalAnswersCounter) * 100
+
+        output.innerHTML = `
+          Total Answers: ${totalAnswersCounter}
+          ${answer1.value}: ${parseInt(answer1Percentage)}%
+          ${answer2.value}: ${parseInt(answer2Percentage)}%
+          ${answer3.value}: ${parseInt(answer3Percentage)}%
+        `
+      }
+    </script>
+  </body>
+</html>
