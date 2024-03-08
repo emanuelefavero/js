@@ -106,29 +106,31 @@
       function submitPoll() {
         event.preventDefault()
 
+        // Count the answers
         totalAnswersCounter++
-
         if (answer1.checked) answer1Counter++
         else if (answer2.checked) answer2Counter++
         else if (answer3.checked) answer3Counter++
         else return // do nothing if no answer is checked
 
-        const answer1Percentage = (answer1Counter / totalAnswersCounter) * 100
-        const answer2Percentage = (answer2Counter / totalAnswersCounter) * 100
-        const answer3Percentage = (answer3Counter / totalAnswersCounter) * 100
-
+        // Update the output
         totalAnswersOutput.innerHTML = `
         Total Answers: ${totalAnswersCounter}
         `
         answer1Output.innerHTML = `
-        ${answer1.value}: ${parseInt(answer1Percentage)}%
+        ${answer1.value}: ${getPercentage(answer1Counter)}%
         `
         answer2Output.innerHTML = `
-        ${answer2.value}: ${parseInt(answer2Percentage)}%
+        ${answer2.value}: ${getPercentage(answer2Counter)}%
         `
         answer3Output.innerHTML = `
-        ${answer3.value}: ${parseInt(answer3Percentage)}%
+        ${answer3.value}: ${getPercentage(answer3Counter)}%
         `
+      }
+
+      // Utilities
+      function getPercentage(answerCounter) {
+        return parseInt((answerCounter / totalAnswersCounter) * 100)
       }
     </script>
   </body>
