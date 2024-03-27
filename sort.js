@@ -15,3 +15,11 @@ console.log(nums) // [1, 10, 2, 21] - WRONG!
 let words = ['banana', 'apple', 'america']
 words.sort()
 console.log(words) // ['america', 'apple', 'banana']
+
+// -----------------------------
+
+// Random Sort an Array
+const points = [1, 2, 3, 4, 5]
+points.sort(() => 0.5 - Math.random())
+
+console.log(points) // [3, 2, 1, 5, 4], RANDOM
