@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: sans-serif;
+      }
+
+      footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        height: 50px;
+      }
+
+      main {
+        display: grid;
+        grid-template-rows: repeat(4, 1fr);
+        height: calc(100vh - 50px);
+      }
+
+      main section {
+        display: grid;
+        place-items: center;
+        font-weight: 600;
+        font-size: 1.15rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section></section>
+      <section></section>
+      <section></section>
+      <section></section>
+    </main>
+
+    <footer>
+      <input type="range" id="lightnessSlider" min="0" max="100" value="100" />
+      <button type="button" id="randomizeButton">Randomize</button>
+    </footer>
+
+    <script src="utils.js"></script>
+
+    <script>
+      const lightnessSlider = document.getElementById('lightnessSlider')
+      const randomizeButton = document.getElementById('randomizeButton')
+      const sections = document.querySelectorAll('main section')
+
+      lightnessSlider.addEventListener('input', (e) => {
+        randomColor(e.target.value)
+      })
+
+      randomizeButton.addEventListener('click', () => {
+        randomColor(lightnessSlider.value)
+      })
+
+      function randomColor(lightness) {
+        sections.forEach((section) => {
+          // h
+          const hue = 360
+          const h = Math.floor(Math.random() * hue)
+
+          // l
+          const l = Math.floor(Math.random() * lightness)
+
+          // s
+          const saturation = 100
+          const s = Math.floor(Math.random() * saturation)
+
+          const hsl = `hsl(${h}, ${s}%, ${l}%)`
+
+          section.style.backgroundColor = hsl
+          section.textContent = `${hslToHex(h, s, l)}`
+
+          if (l > 50) {
+            section.style.color = '#000'
+          } else {
+            section.style.color = '#fff'
+          }
+        })
+      }
+
+      randomColor(lightnessSlider.value)
+    </script>
+  </body>
+</html>
