@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snake Game</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #222;
+      }
+
+      canvas {
+        border: 2px solid white;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="gameCanvas" width="320" height="320"></canvas>
+    <script>
+      const canvas = document.getElementById('gameCanvas')
+      const ctx = canvas.getContext('2d')
+
+      const box = 20
+      let snake = [{ x: 10 * box, y: 10 * box }]
+      let direction = 'RIGHT'
+      let food = {
+        x: Math.floor(Math.random() * 16) * box,
+        y: Math.floor(Math.random() * 16) * box,
+      }
+      let game
+      let gameSpeed = 150 // lower is faster
+      let started = false
+
+      document.addEventListener('keydown', (event) => {
+        if (!started) {
+          started = true
+          game = setInterval(draw, gameSpeed)
+        }
+        changeDirection(event)
+      })
+
+      function changeDirection(event) {
+        const key = event.keyCode
+        if (key === 37 && direction !== 'RIGHT') direction = 'LEFT'
+        else if (key === 38 && direction !== 'DOWN') direction = 'UP'
+        else if (key === 39 && direction !== 'LEFT') direction = 'RIGHT'
+        else if (key === 40 && direction !== 'UP') direction = 'DOWN'
+      }
+
+      function draw() {
+        ctx.fillStyle = 'black'
+        ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+        ctx.fillStyle = 'red'
+        ctx.fillRect(food.x, food.y, box, box)
+
+        for (let i = 0; i < snake.length; i++) {
+          ctx.fillStyle = i === 0 ? 'lime' : 'green'
+          ctx.fillRect(snake[i].x, snake[i].y, box, box)
+        }
+
+        if (!started) return
+
+        let newX = snake[0].x
+        let newY = snake[0].y
+
+        if (direction === 'LEFT') newX -= box
+        if (direction === 'UP') newY -= box
+        if (direction === 'RIGHT') newX += box
+        if (direction === 'DOWN') newY += box
+
+        if (newX === food.x && newY === food.y) {
+          food.x = Math.floor(Math.random() * 16) * box
+          food.y = Math.floor(Math.random() * 16) * box
+        } else {
+          snake.pop()
+        }
+
+        let newHead = { x: newX, y: newY }
+        if (
+          newX < 0 ||
+          newY < 0 ||
+          newX >= 320 ||
+          newY >= 320 ||
+          snake.some((segment) => segment.x === newX && segment.y === newY)
+        ) {
+          clearInterval(game)
+          alert('Game Over')
+          return
+        }
+
+        snake.unshift(newHead)
+      }
+
+      draw() // Draw the initial state of the game
+    </script>
+  </body>
+</html>
