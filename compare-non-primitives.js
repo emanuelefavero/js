@@ -28,3 +28,25 @@ function compareObjects2(a, b) {
 }
 
 console.log(compareObjects2(obj3, obj4)) // true
+
+// * Compare two arrays
+const arr1 = [1, 2, 3]
+const arr2 = [1, 2, 3]
+console.log(arr1 === arr2) // ! false
+
+function compareArrays(a, b) {
+  return JSON.stringify(a) === JSON.stringify(b)
+}
+
+console.log(compareArrays(arr1, arr2)) // true
+
+// Compare two arrays with elements in different order
+const arr3 = [1, 2, 3]
+const arr4 = [3, 2, 1]
+console.log(compareArrays(arr3, arr4)) // ! false
+
+function compareArrays2(a, b) {
+  return JSON.stringify(a.sort()) === JSON.stringify(b.sort())
+}
+
+console.log(compareArrays2(arr3, arr4)) // true
