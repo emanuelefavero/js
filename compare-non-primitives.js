@@ -81,3 +81,14 @@ function compareMaps(a, b) {
 
 console.log(compareMaps(map1, map2)) // true
 // BEWARE: This method only works for simple maps. It doesn't work for maps with objects as keys or values.
+
+// * Compare two dates
+const date1 = new Date('2021-07-17')
+const date2 = new Date('2021-07-17')
+console.log(date1 === date2) // ! false
+
+function compareDates(a, b) {
+  return a.getTime() === b.getTime()
+}
+
+console.log(compareDates(date1, date2)) // true
