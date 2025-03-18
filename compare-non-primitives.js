@@ -118,3 +118,32 @@ function compareFunctions(a, b) {
 }
 
 console.log(compareFunctions(func1, func2)) // true
+
+// * Custom deep comparison
+
+// A deep comparison is a comparison between two objects that checks if they have the same properties and values. This is useful when you want to compare two objects that have nested objects or arrays.
+
+// TIP: You can use the lodash `isEqual` method to compare two objects deeply.
+// import _ from 'lodash'
+// console.log(_.isEqual(obj1, obj2)) // true
+
+function deepEqual(a, b) {
+  if (a === b) return true
+
+  if (a == null || typeof a != 'object' || b == null || typeof b != 'object')
+    return false
+
+  const keysA = Object.keys(a)
+  const keysB = Object.keys(b)
+
+  if (keysA.length !== keysB.length) return false
+
+  // Check if all keys and values are the same in both objects
+  for (let key of keysA) {
+    if (!keysB.includes(key) || !deepEqual(a[key], b[key])) return false
+  }
+
+  return true
+}
+
+console.log(deepEqual(obj1, obj2)) // true
