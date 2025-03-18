@@ -50,3 +50,15 @@ function compareArrays2(a, b) {
 }
 
 console.log(compareArrays2(arr3, arr4)) // true
+
+// * Compare two sets
+const set1 = new Set([1, 2, 3])
+const set2 = new Set([1, 2, 3])
+console.log(set1 === set2) // ! false
+
+// TIP: Since sets are iterables, you can convert them to arrays and compare them using the previous method
+function compareSets(a, b) {
+  return JSON.stringify([...a].sort()) === JSON.stringify([...b].sort())
+}
+
+console.log(compareSets(set1, set2)) // true
