@@ -92,3 +92,29 @@ function compareDates(a, b) {
 }
 
 console.log(compareDates(date1, date2)) // true
+
+// * Compare two regex
+const regex1 = /hello/
+const regex2 = /hello/
+console.log(regex1 === regex2) // ! false
+
+function compareRegex(a, b) {
+  return a.toString() === b.toString()
+}
+
+console.log(compareRegex(regex1, regex2)) // true
+
+// * Compare two functions
+const func1 = function () {
+  return 'Hello'
+}
+const func2 = function () {
+  return 'Hello'
+}
+console.log(func1 === func2) // ! false
+
+function compareFunctions(a, b) {
+  return a.toString() === b.toString()
+}
+
+console.log(compareFunctions(func1, func2)) // true
