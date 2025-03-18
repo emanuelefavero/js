@@ -62,3 +62,22 @@ function compareSets(a, b) {
 }
 
 console.log(compareSets(set1, set2)) // true
+
+// * Compare two maps
+const map1 = new Map([
+  ['name', 'John'],
+  ['age', 21],
+])
+const map2 = new Map([
+  ['name', 'John'],
+  ['age', 21],
+])
+console.log(map1 === map2) // ! false
+
+// TIP: Since maps are iterables, you can convert them to arrays and compare them using the previous method
+function compareMaps(a, b) {
+  return JSON.stringify([...a].sort()) === JSON.stringify([...b].sort())
+}
+
+console.log(compareMaps(map1, map2)) // true
+// BEWARE: This method only works for simple maps. It doesn't work for maps with objects as keys or values.
